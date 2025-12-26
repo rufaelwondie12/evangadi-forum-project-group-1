@@ -1,3 +1,4 @@
+
 # Evangadi Forum Project  -- June 2025 batch-Group-1 
  
 ## Project Overview
@@ -8,23 +9,21 @@ The Evangadi Forum project aims to create a Q&A platform for Evangadi Networks, 
 - To implement robust backend functionality to handle user actions and data storage.
 - To ensure security and performance optimization of the application.
 
-## Task Breakdown for 11 Students
+## Task Breakdown 
 
 | Student       | Backend Task                                    | Frontend Task                               |
 |---------------|-------------------------------------------------|---------------------------------------------|
-| Student A     | Set up the MySQL database and table schema      | Create the Sign-up component                |
-
-| Student B     | Document the APIs for authentication and Q&A    | Develop the Login component  
-                |
-| Student C     | Implement authentication middleware               | Build the Header component                   |
-| Student D     | Create the Sign-up API endpoint                  | Design the Questions Page                    |
-| Student E     | Develop the Login API endpoint                    | Implement the Question and Answers Page     |
-| Student F     | Implement CRUD operations for questions           | Create the Ask a Question page               |
-| Student G     | Implement CRUD operations for answers             | Style the application using CSS               |
-| Student H     | Set up error handling and testing                 | Integrate the frontend with backend APIs     |
-| Student I     | Optimize database schema for performance          | Implement responsive design features         |
-| Student J     | Write unit tests for backend features             | Conduct usability testing on the frontend    |
-| Student K     | Ensure security measures are in place            | Perform analytics and gather user feedback   | 
+| Birhanu W     | Set up the MySQL database and table schema      | Create the Sign-up component                |
+| Eyerusalem T  | Document the APIs for authentication and Q&A    | Develop the Login component               |
+| Hana W        | Implement authentication middleware             | Build the Header component                   |
+| Mikiyas T     | Create the Sign-up API endpoint                 | Design the Questions Page                    |
+| Robel B       | Develop the Login API endpoint                  | Implement the Question and Answers Page     |
+| Samuel M      | Implement CRUD operations for questions         | Create the Ask a Question page               |
+| Seblewongel A | Implement CRUD operations for answers           | Style the application using CSS               
+| Tsega T       | Set up error handling and testing               | Integrate the frontend with backend APIs     |
+| Yitawek M     | Optimize database schema for performance        | Implement responsive design features         |
+| Yoseph G      | Write unit tests for backend features           | Conduct usability testing on the frontend    |
+| Zac A         | Ensure security measures are in place           | Perform analytics and gather user feedback   | 
 
 ## Getting Started
 
@@ -40,8 +39,8 @@ The Evangadi Forum project aims to create a Q&A platform for Evangadi Networks, 
 
 #### Contributing
 please follow these steps:
-
 1.Fork the repository.
 2.Create a new branch for your feature.
 3.Make your changes and commit them.
 4.Push to your branch and open a pull request.
+
