@@ -1,29 +1,30 @@
+// The entry point of your application.
+
 require("dotenv").config();
 const express = require("express");
-const cors = require("cors");
-
-// Import the database connection
-const dbConnection = require("./config/dbConfig");
-
-// Import the user routes
-const userRoute = require("./routes/userRoute");
-// Import the question routes (Assuming you created this earlier)
-const questionRoute = require("./routes/questionRoute");
-
 const app = express();
 const port = process.env.PORT || 5500;
+const cors = require("cors");
 
-// Middleware
+// db connection
+const dbConnection = require("./config/dbConfig");
+
+// routes middleware
+const userRoute = require("./routes/userRoute");
+const questionRoute = require("./routes/questionRoute");
+const answerRoute = require("./routes/answerRoute");
+
 app.use(cors());
 app.use(express.json());
 
-// --- ROUTES ---
-app.use("/api/users", userRoute);
-app.use("/api/questions", questionRoute);
+// user routes
+app.use("/api/user", userRoute);
 
-app.get("/", (req, res) => {
-  res.send("Evangadi Forum API is running...");
-});
+// question routes
+app.use("/api/question", questionRoute);
+
+// answer routes
+app.use("/api/answer", answerRoute);
 
 // --- TABLE CREATION LOGIC ---
 async function createTables() {
@@ -38,25 +39,26 @@ async function createTables() {
         PRIMARY KEY (userid)
     )`,
     `CREATE TABLE IF NOT EXISTS questions (
-        id INT(11) NOT NULL AUTO_INCREMENT,
-        questionid VARCHAR(100) NOT NULL UNIQUE,
-        userid INT(11) NOT NULL,
-        title VARCHAR(50) NOT NULL,
-        description VARCHAR(200) NOT NULL,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        tag VARCHAR(20),
-        PRIMARY KEY (id),
-        FOREIGN KEY (userid) REFERENCES users(userid)
+     id INT(11) NOT NULL AUTO_INCREMENT,
+    questionid VARCHAR(100) NOT NULL,
+    userid INT(11) NOT NULL,
+    title VARCHAR(50) NOT NULL,
+    description TEXT NOT NULL, 
+    tag VARCHAR(20),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    UNIQUE KEY (questionid), 
+    FOREIGN KEY (userid) REFERENCES users(userid)
     )`,
     `CREATE TABLE IF NOT EXISTS answers (
-        answerid INT(11) NOT NULL AUTO_INCREMENT,
-        userid INT(11) NOT NULL,
-        questionid VARCHAR(100) NOT NULL,
-        answer TEXT NOT NULL,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        PRIMARY KEY (answerid),
-        FOREIGN KEY (userid) REFERENCES users(userid),
-        FOREIGN KEY (questionid) REFERENCES questions(questionid)
+      answerid INT(11) NOT NULL AUTO_INCREMENT,
+    userid INT(11) NOT NULL,
+    questionid VARCHAR(100) NOT NULL, 
+    answer TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (answerid),
+    FOREIGN KEY (userid) REFERENCES users(userid),
+    FOREIGN KEY (questionid) REFERENCES questions(questionid) ON DELETE CASCADE
     )`,
   ];
 

@@ -1,16 +1,27 @@
 const express = require("express");
 const router = express.Router();
 
-// Import the controller functions
+// Import the auth middleware to protect these routes
+const authMiddleware = require("../middleware/authMiddleware");
+
+// Import the controller functions (Student 2 will fill these in)
 const {
   postQuestion,
-  allQuestions,
+  getAllQuestions,
+  getSingleQuestion,
 } = require("../controller/questionController");
 
-// Get all questions
-router.get("/all-questions", allQuestions);
+// 1. Post a question - [POST] /api/question/
+router.post("/postQuestion", authMiddleware, postQuestion);
 
-// Post a question
-router.post("/post-question", postQuestion);
+// 2. Get all questions - [GET] /api/question/
+router.get("/getAllQuestions", authMiddleware, getAllQuestions);
+
+// 3. Get a single question - [GET] /api/question/:question_id
+router.get(
+  "/getSingleQuestion/:question_id",
+  authMiddleware,
+  getSingleQuestion,
+);
 
 module.exports = router;

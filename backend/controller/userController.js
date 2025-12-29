@@ -1,13 +1,22 @@
 const dbConnection = require("../config/dbConfig");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const { StatusCodes } = require("http-status-codes");
 
-// Placeholder for registration logic
 async function register(req, res) {
-  res.send("Register logic will be written here by the team.");
+  // Student 1 will implement registration logic here
+  res.send("register logic");
 }
 
-// Placeholder for login logic
 async function login(req, res) {
-  res.send("Login logic will be written here by the team.");
+  // Student 2 will implement login logic here
+  res.send("login logic");
 }
 
-module.exports = { register, login };
+async function checkUser(req, res) {
+  // This uses the authMiddleware to verify the user
+  const { username, userid } = req.user;
+  res.status(StatusCodes.OK).json({ msg: "valid user", username, userid });
+}
+
+module.exports = { register, login, checkUser };
