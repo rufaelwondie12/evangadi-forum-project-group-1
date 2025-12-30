@@ -18,10 +18,6 @@ router.post("/postQuestion", authMiddleware, postQuestion);
 router.get("/getAllQuestions", authMiddleware, getAllQuestions);
 
 // 3. Get a single question - [GET] /api/question/:question_id
-router.get(
-  "/getSingleQuestion/:question_id",
-  authMiddleware,
-  getSingleQuestion,
-);
+router.get("/getSingleQuestion/:questionid", authMiddleware, getSingleQuestion);
 
 module.exports = router;
