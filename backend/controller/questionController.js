@@ -10,6 +10,7 @@ async function postQuestion(req, res) {
   res.send("Post logic coming soon");
 }
 
+
 // Student 2 - Task B
 async function getAllQuestions(req, res) {
   res.send("All questions logic coming soon");
