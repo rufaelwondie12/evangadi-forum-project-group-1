@@ -22,10 +22,6 @@ router.get("/getAllQuestions", authMiddleware, getAllQuestions);
 // router.get("/getAllQuestions",  getAllQuestions);
 
 // 3. Get a single question - [GET] /api/question/:question_id
-router.get(
-  "/getSingleQuestion/:question_id",
-  authMiddleware,
-  getSingleQuestion
-);
+router.get("/:question_id", authMiddleware, getSingleQuestion);
 
 module.exports = router;

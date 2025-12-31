@@ -93,7 +93,7 @@ async function getAllQuestions(req, res) {
 
 // Student 3 - Task C (Ready for implementation)
 async function getSingleQuestion(req, res) {
-  const { questionid } = req.params;
+  const { question_id } = req.params;
 
   try {
     // 2. Query the database using a JOIN to get the username of the asker
@@ -103,7 +103,7 @@ async function getSingleQuestion(req, res) {
       JOIN users u ON q.userid = u.userid 
       WHERE q.questionid = ?`;
 
-    const [question] = await dbConnection.query(query, [questionid]);
+    const [question] = await dbConnection.query(query, [question_id]);
 
     // 3. If no question is found, return 404
     if (question.length === 0) {
