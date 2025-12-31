@@ -65,7 +65,7 @@ async function getAllQuestions(req, res) {
         `;
     //destructure the result to get only the rows
     const [questions] = await dbConnection.execute(query);
-
+    
     // Check if questions exist
     if (questions.length === 0) {
       return res.status(StatusCodes.NOT_FOUND).json({
