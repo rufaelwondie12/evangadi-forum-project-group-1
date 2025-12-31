@@ -93,7 +93,33 @@ async function getAllQuestions(req, res) {
 
 // Student 3 - Task C (Ready for implementation)
 async function getSingleQuestion(req, res) {
-  res.send("Single question logic coming soon");
+  const { questionid } = req.params;
+
+  try {
+    // 2. Query the database using a JOIN to get the username of the asker
+    const query = `
+      SELECT q.questionid, q.title, q.description, q.tag, u.username 
+      FROM questions q 
+      JOIN users u ON q.userid = u.userid 
+      WHERE q.questionid = ?`;
+
+    const [question] = await dbConnection.query(query, [questionid]);
+
+    // 3. If no question is found, return 404
+    if (question.length === 0) {
+      return res.status(StatusCodes.NOT_FOUND).json({
+        msg: "The requested question could not be found.",
+      });
+    }
+
+    // 4. Return the result
+    return res.status(StatusCodes.OK).json({ question: question[0] });
+  } catch (error) {
+    console.log(error.message);
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+      msg: "An unexpected error occurred.",
+    });
+  }
 }
 
 module.exports = { postQuestion, getAllQuestions, getSingleQuestion };
