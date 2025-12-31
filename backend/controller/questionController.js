@@ -7,15 +7,19 @@ const crypto = require("crypto");
 // Student 1 - Task A
 async function postQuestion(req, res) {
   try {
-    const { title, description, userid, tag } = req.body;
+    // Get title, description, tag from request body
+    const { title, description, tag } = req.body;
 
-    if (!title || !description || !userid) {
+    // Get userid from authMiddleware (decoded token)
+    const userid = req.user.userid; // <-- authMiddleware should set req.user
+
+    if (!title || !description) {
       return res
         .status(400)
-        .json({ msg: "Title, description, and userid are required" });
+        .json({ msg: "Title and description are required" });
     }
 
-    // Check if user exists
+    // Verify user exists
     const [user] = await dbConnection.execute(
       "SELECT userid FROM users WHERE userid = ?",
       [userid]
@@ -24,7 +28,10 @@ async function postQuestion(req, res) {
       return res.status(400).json({ msg: "User does not exist" });
     }
 
+    // Generate unique questionid
     const questionid = uuidv4();
+
+    // Insert question into database
     const query = `
       INSERT INTO questions (questionid, userid, title, description, tag)
       VALUES (?, ?, ?, ?, ?)
