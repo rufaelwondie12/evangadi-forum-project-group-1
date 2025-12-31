@@ -7,16 +7,20 @@ async function postAnswer(req, res) {
   const userid = req.user.userid;
 
   if (!questionid || !answer) {
-    return res.status(StatusCodes.BAD_REQUEST).json({ msg: "Please provide answer" }); //
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .json({ msg: "Please provide all fields" }); //
   }
 
   try {
     await dbConnection.query(
       "INSERT INTO answers (userid, questionid, answer) VALUES (?, ?, ?)",
-      [userid, questionid, answer]
+      [userid, questionid, answer],
     );
 
-    return res.status(StatusCodes.CREATED).json({ msg: "Answer posted successfully" }); //
+    return res
+      .status(StatusCodes.CREATED)
+      .json({ msg: "Answer posted successfully" }); //
   } catch (error) {
     console.log(error);
     return res
@@ -27,7 +31,11 @@ async function postAnswer(req, res) {
 
 async function getAnswers(req, res) {
   // Student 3 will implement get answers for a specific question logic here
-  res.send("get answers");
+  //to make sure the app doesn't crash when someone calls the GET route,
+  return res.status(StatusCodes.OK).json({
+    msg: "Answers list coming soon!",
+    answers: [],
+  });
 }
 
 module.exports = { postAnswer, getAnswers };

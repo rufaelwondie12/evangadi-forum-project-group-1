@@ -12,11 +12,11 @@ const {
 } = require("../controller/questionController");
 
 // 1. Post a question - [POST] /api/question/
-router.post("/postQuestion", authMiddleware, postQuestion);
+router.post("/", authMiddleware, postQuestion);
 
 // 2. Get all questions - [GET] /api/question/ method to fetch all questions only for authenticated users
 
-router.get("/getAllQuestions", authMiddleware, getAllQuestions);
+router.get("/", authMiddleware, getAllQuestions);
 
 //  to test without authentication to get dummy data we insert from our database
 // router.get("/getAllQuestions",  getAllQuestions);
