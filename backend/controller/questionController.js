@@ -31,7 +31,7 @@ async function getAllQuestions(req, res) {
             ORDER BY q.id DESC
         `;
     //destructure the result to get only the rows
-    const [questions] = await db.execute(query);
+    const [questions] = await dbConnection.execute(query);
 
     // Check if questions exist
     if (questions.length === 0) {
