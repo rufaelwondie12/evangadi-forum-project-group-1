@@ -12,9 +12,9 @@ async function postQuestion(req, res) {
 
 // Student 2 - Task B
 async function getAllQuestions(req, res) {
-try {
-  // SQL query to get all questions with user information
-  const query = `
+  try {
+    // SQL query to get all questions with user information
+    const query = `
             SELECT 
                 q.questionid,
                 q.title,
@@ -30,27 +30,32 @@ try {
             JOIN users u ON q.userid = u.userid
             ORDER BY q.id DESC
         `;
-  //destructure the result to get only the rows
-  const [questions] = await db.execute(query);
+    //destructure the result to get only the rows
+    const [questions] = await db.execute(query);
 
-  // Check if questions exist
-  if (questions.length === 0) {
-    return res.status(StatusCodes.NOT_FOUND).json({
+    // Check if questions exist
+    if (questions.length === 0) {
+      return res.status(StatusCodes.NOT_FOUND).json({
+        error: true,
+        message: "No questions found",
+        data: [],
+      });
+    }
+
+    res.status(StatusCodes.OK).json({
+      error: false,
+      message: "Questions retrieved successfully",
+      data: questions,
+      count: questions.length,
+    });
+  } catch (error) {
+    console.error("Error fetching questions:", error);
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
       error: true,
-      message: "No questions found",
-      data: [],
+      message: "Internal server error",
+      details: error.message,
     });
   }
-
-  res.status(StatusCodes.OK).json({
-    error: false,
-    message: "Questions retrieved successfully",
-    data: questions,
-    count: questions.length,
-  });
-} catch (error) {
-  
-}
 }
 
 // Student 3 - Task C
