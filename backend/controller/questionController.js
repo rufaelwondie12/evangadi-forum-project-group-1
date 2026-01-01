@@ -4,20 +4,32 @@ const { v4: uuidv4 } = require("uuid");
 
 // Student 1 - Task A
 async function postQuestion(req, res) {
-  const { title, description, tag } = req.body;
-
-  // SECURE: Get userid from the token, not from the user's input
-  const { userid } = req.user;
-
-  if (!title || !description) {
-    return res
-      .status(StatusCodes.BAD_REQUEST)
-      .json({ msg: "Please provide all required fields (title, description)" });
-  }
-
   try {
+    // Get title, description, tag from request body
+    const { title, description, tag } = req.body;
+
+    // Get userid from authMiddleware (decoded token)
+    const userid = req.user.userid; // <-- authMiddleware should set req.user
+
+    if (!title || !description) {
+      return res
+        .status(400)
+        .json({ msg: "Title and description are required" });
+    }
+
+    // Verify user exists
+    const [user] = await dbConnection.execute(
+      "SELECT userid FROM users WHERE userid = ?",
+      [userid]
+    );
+    if (!user.length) {
+      return res.status(400).json({ msg: "User does not exist" });
+    }
+
+    // Generate unique questionid
     const questionid = uuidv4();
 
+    // Insert question into database
     const query = `
       INSERT INTO questions (questionid, userid, title, description, tag)
       VALUES (?, ?, ?, ?, ?)

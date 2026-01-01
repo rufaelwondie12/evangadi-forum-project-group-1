@@ -12,7 +12,7 @@ const {
 } = require("../controller/questionController");
 
 // 1. Post a question - [POST] /api/question/
-router.post("/", authMiddleware, postQuestion);
+router.post("/postQuestion",authMiddleware, postQuestion);
 
 // 2. Get all questions - [GET] /api/question/ method to fetch all questions only for authenticated users
 
