@@ -4,8 +4,8 @@ const authMiddleware = require("../middleware/authMiddleware");
 const { postAnswer, getAnswers } = require("../controller/answerController");
 
 // All answer routes are protected
-router.route("/").post(authMiddleware, postAnswer); //to handle multiple HTTP methods on the same path.
+router.post("/postAnswer", authMiddleware, postAnswer);
 
-router.route("/:question_id").get(authMiddleware, getAnswers);
+router.get("/getAnswers/:question_id", authMiddleware, getAnswers);
 
 module.exports = router;
