@@ -77,7 +77,6 @@ async function login(req, res) {
     const username = user[0].username;
     const userid = user[0].userid;
 
-    // Use environment variable for the secret!
     const token = jwt.sign(
       { username, userid },
       process.env.JWT_SECRET || "default_secret",

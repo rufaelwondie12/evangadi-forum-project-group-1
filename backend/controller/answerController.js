@@ -2,7 +2,6 @@ const dbConnection = require("../config/dbConfig");
 const { StatusCodes } = require("http-status-codes");
 
 async function postAnswer(req, res) {
-  // Student 3 will implement post answer logic here
   const { questionid, answer } = req.body;
   const userid = req.user.userid;
 
@@ -30,12 +29,27 @@ async function postAnswer(req, res) {
 }
 
 async function getAnswers(req, res) {
-  // Student 3 will implement get answers for a specific question logic here
-  //to make sure the app doesn't crash when someone calls the GET route,
-  return res.status(StatusCodes.OK).json({
-    msg: "Answers list coming soon!",
-    answers: [],
-  });
+  // Grab the question_id from the URL parameters
+  const { question_id } = req.params;
+
+  try {
+    // SQL Logic: We JOIN with the users table to get the 'username' of the person who answered
+    const [answers] = await dbConnection.query(
+      `SELECT answers.answer, users.username 
+       FROM answers 
+       JOIN users ON answers.userid = users.userid 
+       WHERE answers.questionid = ? 
+       ORDER BY answers.answerid DESC`,
+      [question_id],
+    );
+
+    return res.status(StatusCodes.OK).json({ answers });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ msg: "Something went wrong, try again later" });
+  }
 }
 
 module.exports = { postAnswer, getAnswers };
