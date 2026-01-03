@@ -1,0 +1,26 @@
+.not-found-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 70vh;
+  padding: 20px;
+}
+
+.not-found-container h1 {
+  font-size: 8rem;
+  color: var(--primary-color);
+  margin-bottom: 0;
+}
+
+.not-found-container h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+.not-found-container p {
+  max-width: 500px;
+  margin-bottom: 30px;
+  color: var(--text-light);
+}
