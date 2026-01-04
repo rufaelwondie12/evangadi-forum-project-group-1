@@ -1,13 +1,12 @@
 import { useState } from "react";
 import axios from "axios";
-import "./QuestionForm.css";
+import styles from "./QuestionForm.module.css";
 
 const QuestionForm = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [tag, setTag] = useState("");
   const [error, setError] = useState("");
-  const [open, setOpen] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,52 +35,49 @@ const QuestionForm = () => {
         }
       );
 
-      // reset
+      // reset form
       setTitle("");
       setDescription("");
       setTag("");
-      setOpen(false);
     } catch (err) {
       setError(err.response?.data?.msg || "Failed to post question");
     }
   };
 
   return (
-    <div className="question-form-wrapper">
-      <button className="toggle-btn" onClick={() => setOpen(!open)}>
-        Ask a Question
-        <span className={`arrow ${open ? "open" : ""}`}>⌄</span>
-      </button>
+    <div className={styles.wrapper}>
+      <h2 className={styles.forumTitle}>Evangadi Forum - Post a Question</h2>
 
-      <div className={`form-slide ${open ? "show" : ""}`}>
-        {error && <p className="error-text">{error}</p>}
+      {error && <p className={styles.errorText}>{error}</p>}
 
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder="Question title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <input
+          type="text"
+          placeholder="Question title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          className={styles.input}
+        />
 
-          <textarea
-            placeholder="Describe your question..."
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
+        <textarea
+          placeholder="Describe your question..."
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          className={styles.textarea}
+        />
 
-          <input
-            type="text"
-            placeholder="Tag (optional)"
-            value={tag}
-            onChange={(e) => setTag(e.target.value)}
-          />
+        <input
+          type="text"
+          placeholder="Tag (optional)"
+          value={tag}
+          onChange={(e) => setTag(e.target.value)}
+          className={styles.input}
+        />
 
-          <button type="submit" className="submit-btn">
-            Post Question
-          </button>
-        </form>
-      </div>
+        <button type="submit" className={styles.submitBtn}>
+          Post Question
+        </button>
+      </form>
     </div>
   );
 };

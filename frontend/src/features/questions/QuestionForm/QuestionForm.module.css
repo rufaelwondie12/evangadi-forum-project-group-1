@@ -1,76 +1,60 @@
-.question-form-wrapper {
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  overflow: hidden;
+.wrapper {
+  max-width: 800px;
+  margin: 40px auto;
+  font-family: "Arial", sans-serif;
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.toggle-btn {
-  width: 100%;
-  padding: 15px;
-  background: #fff;
-  border: none;
-  font-size: 18px;
+.forumTitle {
+  color: #0d8abc;
+  margin-bottom: 20px;
+  font-size: 24px;
   font-weight: bold;
-  display: flex;
-  justify-content: space-between;
-  cursor: pointer;
 }
 
-.arrow {
-  transition: transform 0.4s ease;
+.errorText {
+  color: #d32f2f;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
-.arrow.open {
-  transform: rotate(180deg);
-}
-
-.form-slide {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.6s ease, padding 0.4s ease;
-  padding: 0 15px;
-}
-
-.form-slide.show {
-  max-height: 500px;
-  padding: 20px 15px;
-}
-
-form {
+.form {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-input,
-textarea {
-  padding: 10px;
-  font-size: 14px;
+.input {
+  padding: 12px 15px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 6px;
+  font-size: 16px;
 }
 
-textarea {
+.textarea {
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  min-height: 120px;
   resize: vertical;
-  min-height: 100px;
 }
 
-.submit-btn {
-  background: #516cf0;
+.submitBtn {
+  padding: 12px 20px;
+  background: #0d8abc;
   color: #fff;
   border: none;
-  padding: 10px;
-  font-size: 15px;
+  border-radius: 6px;
   cursor: pointer;
-  border-radius: 4px;
+  font-size: 16px;
+  align-self: flex-end;
+  transition: background 0.3s;
 }
 
-.submit-btn:hover {
-  background: #3f56d8;
-}
-
-.error-text {
-  color: darkred;
-  font-weight: bold;
-  margin-bottom: 10px;
+.submitBtn:hover {
+  background: #0b749e;
 }

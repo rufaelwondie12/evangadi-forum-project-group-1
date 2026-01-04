@@ -9,7 +9,7 @@ import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import Loader from "./components/Loader/Loader";
 
 // Pages
-// import Home from "./pages/Home/Home";
+import Home from "./Pages/Home/Home";
 import Landing from "./pages/Landing/Landing";
 
 import QuestionDetail from "./pages/QuestionDetail/QuestionDetail";
@@ -58,7 +58,8 @@ function App() {
           {/* Public Routes */}
           <Route path="/login" element={<Landing />} />
           <Route path="/register" element={<Landing />} />
-          <Route path="/ask" element={<AskQuestion/>} />
+
+          {/* <Route path="/ask" element={<AskQuestion />} /> */}
 
           <Route path="*" element={<NotFound />} />
         </Routes>
