@@ -1,15 +1,26 @@
 import React from "react";
+import { useParams } from "react-router-dom";
+import QuestionDetailFeature from "../../features/questions/QuestionDetail/QuestionDetail";
+import AnswerList from "../../features/answers/AnswerList/AnswerList";
+import AnswerForm from "../../features/answers/AnswerForm/AnswerForm";
+import classes from "./QuestionDetail.module.css";
 
-const QuestionDetail = () => {
+const QuestionDetailPage = () => {
+  const { questionId } = useParams();
+
   return (
-    <div>
-      <h1>Question Detail Page</h1>
-      <p>
-        Student Task: Implement the logic to fetch and display a single question
-        and its answers here.
-      </p>
+    <div className={classes.page_container}>
+      {/* 1. Show the Question Logic */}
+      <QuestionDetailFeature questionId={questionId} />
+
+      {/* 2. Show the Answers List  */}
+      <hr />
+      <AnswerList questionId={questionId} />
+
+      {/* 3. Show the Post Answer Form  */}
+      <AnswerForm questionId={questionId} />
     </div>
   );
 };
 
-export default QuestionDetail;
+export default QuestionDetailPage;
