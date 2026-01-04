@@ -9,11 +9,12 @@ import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import Loader from "./components/Loader/Loader";
 
 // Pages
-import Home from "./pages/Home/Home";
+// import Home from "./pages/Home/Home";
 import Landing from "./pages/Landing/Landing";
-import AskQuestion from "./pages/AskQuestion/AskQuestion";
+
 import QuestionDetail from "./pages/QuestionDetail/QuestionDetail";
 import NotFound from "./pages/NotFound/NotFound";
+import AskQuestion from "./Pages/AskQuestion/AskQuestion";
 
 function App() {
   const { isLoading } = useAuth();
@@ -57,6 +58,7 @@ function App() {
           {/* Public Routes */}
           <Route path="/login" element={<Landing />} />
           <Route path="/register" element={<Landing />} />
+          <Route path="/ask" element={<AskQuestion/>} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>
