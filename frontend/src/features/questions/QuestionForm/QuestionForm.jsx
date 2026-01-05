@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom"; // ✅ Added for navigation
 import styles from "./QuestionForm.module.css";
 import { askQuestion } from "../questionService";
 import { Link } from "react-router-dom";
@@ -9,6 +10,8 @@ const QuestionForm = () => {
   const [tag, setTag] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+
+  const navigate = useNavigate(); // ✅ Initialize navigate
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,11 +33,15 @@ const QuestionForm = () => {
       const response = await askQuestion(title, description, tag);
       setSuccess("Question posted successfully!");
 
+      // Reset form
       setTitle("");
       setDescription("");
       setTag("");
 
       console.log("Question posted:", response);
+
+      // ✅ Navigate to /getAllQuestions after posting
+      navigate("/");
     } catch (err) {
       setError(err.response?.data?.msg || "Failed to post question");
     }

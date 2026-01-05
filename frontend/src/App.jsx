@@ -38,14 +38,14 @@ function App() {
               </ProtectedRoute>
             }
           />
-          {/* <Route
+          <Route
             path="/ask"
             element={
               <ProtectedRoute>
                 <AskQuestion />
               </ProtectedRoute>
             }
-          /> */}
+          />
           <Route
             path="/question/:questionId"
             element={
@@ -58,8 +58,8 @@ function App() {
           {/* Public Routes */}
           <Route path="/login" element={<Landing />} />
           <Route path="/register" element={<Landing />} />
-
-          <Route path="/ask" element={<AskQuestion />} />
+          {/* <Route path="/" element={<Home />} />
+          <Route path="/ask" element={<AskQuestion />} /> */}
 
           <Route path="*" element={<NotFound />} />
         </Routes>
