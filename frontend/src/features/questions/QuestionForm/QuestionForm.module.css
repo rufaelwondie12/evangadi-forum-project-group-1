@@ -102,3 +102,13 @@
   color: #388e3c;
   font-weight: bold;
 }
+.successNotification {
+  color: #0f5132; /* dark green like forum success */
+  background-color: #d1e7dd; /* light green background */
+  border: 1px solid #badbcc;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-weight: 500;
+  margin-bottom: 15px;
+  text-align: center;
+}

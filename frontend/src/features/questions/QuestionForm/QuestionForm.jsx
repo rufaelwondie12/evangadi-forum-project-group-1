@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom"; // ✅ Added for navigation
-import styles from "./QuestionForm.module.css";
 import { askQuestion } from "../questionService";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Loader from "../../../Components/Loader/Loader";
+import styles from "./QuestionForm.module.css";
 
 const QuestionForm = () => {
   const [title, setTitle] = useState("");
@@ -10,8 +10,9 @@ const QuestionForm = () => {
   const [tag, setTag] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const navigate = useNavigate(); // ✅ Initialize navigate
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,31 +25,39 @@ const QuestionForm = () => {
     }
 
     try {
+      setLoading(true);
+
       const token = localStorage.getItem("token");
       if (!token) {
         setError("You must be logged in to post a question");
+        setLoading(false);
         return;
       }
 
       const response = await askQuestion(title, description, tag);
-      setSuccess("Question posted successfully!");
 
-      // Reset form
+      setLoading(false);
+      setSuccess("✅ Your question was posted successfully!");
+
+      // reset form
       setTitle("");
       setDescription("");
       setTag("");
 
-      console.log("Question posted:", response);
-
-      // ✅ Navigate to /getAllQuestions after posting
-      navigate("/");
+      // Navigate after 1.5s
+      setTimeout(() => {
+        navigate("/"); // redirect to getAllQuestions
+      }, 1500);
     } catch (err) {
+      setLoading(false);
       setError(err.response?.data?.msg || "Failed to post question");
     }
   };
 
   return (
     <div className={styles.wrapper}>
+      {loading && <Loader />}
+
       {/* Steps Section */}
       <div className={styles.stepsContainer}>
         <h2 className={styles.stepsTitle}>Steps to write a good question</h2>
@@ -61,7 +70,7 @@ const QuestionForm = () => {
       </div>
 
       {/* Form Section */}
-      <h3 className={styles.formTitle}>Ask Question</h3>
+      <h3 className={styles.formTitle}>Ask Public Question</h3>
 
       <div className={styles.goToPage}>
         <Link to="/" className={styles.link}>
@@ -69,8 +78,9 @@ const QuestionForm = () => {
         </Link>
       </div>
 
+      {/* Notifications */}
       {error && <p className={styles.errorText}>{error}</p>}
-      {success && <p className={styles.successText}>{success}</p>}
+      {success && <p className={styles.successNotification}>{success}</p>}
 
       <form onSubmit={handleSubmit} className={styles.form}>
         <input
@@ -97,7 +107,7 @@ const QuestionForm = () => {
         />
 
         <button type="submit" className={styles.submitBtn}>
-          Post Question
+          Post Your Question
         </button>
       </form>
     </div>

@@ -6,7 +6,7 @@ import "./App.css";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
-import Loader from "./components/Loader/Loader";
+import Loader from "./Components/Loader/Loader";
 
 // Pages
 import Home from "./Pages/Home/Home";
@@ -29,7 +29,6 @@ function App() {
 
       <main className="content-container">
         <Routes>
-          {/* Protected Routes */}
           <Route
             path="/"
             element={
@@ -39,13 +38,13 @@ function App() {
             }
           />
           <Route
-            path="/ask"
+             path="/ask"
             element={
-              <ProtectedRoute>
+             <ProtectedRoute>
                 <AskQuestion />
               </ProtectedRoute>
             }
-          />
+          /> 
           <Route
             path="/question/:questionId"
             element={
@@ -58,8 +57,8 @@ function App() {
           {/* Public Routes */}
           <Route path="/login" element={<Landing />} />
           <Route path="/register" element={<Landing />} />
-          {/* <Route path="/" element={<Home />} />
-          <Route path="/ask" element={<AskQuestion />} /> */}
+           {/* <Route path="/" element={<Home />} /> 
+           <Route path="/ask" element={<AskQuestion />} />  */}
 
           <Route path="*" element={<NotFound />} />
         </Routes>
