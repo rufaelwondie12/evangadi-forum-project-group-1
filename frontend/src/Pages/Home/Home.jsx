@@ -21,7 +21,7 @@ const Home = () => {
         <button onClick={handleAskQuestion} className={classes.askButton}>
           Ask Question
         </button>
-        <span className={classes.welcomeText}>Welcome, {username}</span>
+        <span className={classes.welcomeText}>Welcome: {username}</span>
       </div>
 
       {/* Questions Heading */}
@@ -40,5 +40,6 @@ const Home = () => {
     </div>
   );
 };
+
 
 export default Home;

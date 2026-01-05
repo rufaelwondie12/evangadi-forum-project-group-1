@@ -22,11 +22,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     try {
-      const { data } = await axiosBase.get("/users/checkUser", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const { data } = await axiosBase.get("/user/checkUser");
 
       setUser(data);
     } catch (error) {
@@ -38,22 +34,17 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // Login handler that components will call
   const login = async (loginData) => {
-    // 1. Call the API service
     const data = await loginUser(loginData);
-
-    // 2. Update the global state with user info
-
-    setUser(data.user || data); //to save the user's name or ID into the AuthContext
-
+    // After loginUser saves the token, we update the user state
+    setUser(data.user || data);
     return data;
   };
 
   const logout = () => {
-    localStorage.removeItem("token"); // Clears the storage
-    setUser(null); // Resets global state
-    navigate("/login"); // Redirects to login page
+    localStorage.removeItem("token");
+    setUser(null);
+    navigate("/login");
   };
 
   useEffect(() => {
@@ -62,7 +53,7 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider value={{ user, login, setUser, logout, isLoading }}>
-      {children}
+      {!isLoading && children}
     </AuthContext.Provider>
   );
 };
