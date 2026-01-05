@@ -54,7 +54,14 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route path="/AnswerForm" element={<AnswerForm />} />
+          <Route
+            path="/AnswerForm"
+            element={
+              <ProtectedRoute>
+                <AnswerForm />
+              </ProtectedRoute>
+            }
+          />
 
           {/* Public Routes */}
           <Route path="/login" element={<Landing />} />

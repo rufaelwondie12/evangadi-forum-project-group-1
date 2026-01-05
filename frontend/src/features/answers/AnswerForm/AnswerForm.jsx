@@ -29,7 +29,7 @@ const AnswerForm = ({ questionId }) => {
 
       setSuccess("Answer posted successfully.");
       setAnswer("");
-      // optional: trigger a parent refresh via callback if passed as prop
+     
     } catch (err) {
       setError(err.response?.data?.message || "Failed to post answer.");
     } finally {
