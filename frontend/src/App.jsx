@@ -14,6 +14,7 @@ import Landing from "./pages/Landing/Landing";
 import AskQuestion from "./pages/AskQuestion/AskQuestion";
 import QuestionDetail from "./pages/QuestionDetail/QuestionDetail";
 import NotFound from "./pages/NotFound/NotFound";
+import AnswerForm from "./features/answers/AnswerForm/AnswerForm";
 
 function App() {
   const { isLoading } = useAuth();
@@ -53,6 +54,7 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route path="/AnswerForm" element={<AnswerForm />} />
 
           {/* Public Routes */}
           <Route path="/login" element={<Landing />} />
