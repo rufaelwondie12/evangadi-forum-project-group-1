@@ -23,6 +23,7 @@ function App() {
     return <Loader />;
   }
 
+  
   return (
     <>
       <Header />
