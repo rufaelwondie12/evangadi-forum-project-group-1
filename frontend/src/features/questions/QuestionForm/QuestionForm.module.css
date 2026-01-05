@@ -1,60 +1,104 @@
 .wrapper {
   max-width: 800px;
   margin: 40px auto;
-  font-family: "Arial", sans-serif;
-  background: #f9f9f9;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  color: #000; /* all text black */
 }
 
-.forumTitle {
-  color: #0d8abc;
-  margin-bottom: 20px;
+.stepsContainer {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.stepsTitle {
   font-size: 24px;
   font-weight: bold;
+  color: #000;
+  margin-bottom: 15px;
 }
 
-.errorText {
-  color: #d32f2f;
-  font-weight: bold;
+.stepsList {
+  list-style-type: disc; /* bullet points */
+  margin: 0 auto;
+  padding-left: 20px;
+  max-width: 500px;
+  text-align: left;
+}
+
+.stepsList li {
   margin-bottom: 10px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.formTitle {
+  font-size: 22px;
+  font-weight: bold;
+  color: #000;
+  text-align: center; /* centered */
+  margin-bottom: 15px;
+}
+
+.goToPage {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.link {
+  color: #000; /* black text */
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
 }
 
 .form {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 15px;
 }
 
-.input {
-  padding: 12px 15px;
-  border: 1px solid #ccc;
+.input,
+.textarea {
+  padding: 12px;
   border-radius: 6px;
+  border: 1px solid #ccc;
   font-size: 16px;
+  width: 100%;
 }
 
 .textarea {
-  padding: 12px 15px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 16px;
-  min-height: 120px;
   resize: vertical;
+  min-height: 120px;
 }
 
 .submitBtn {
+  background-color: #0d8abc; /* blue background */
+  color: white;
+  font-weight: bold;
   padding: 12px 20px;
-  background: #0d8abc;
-  color: #fff;
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  font-size: 16px;
-  align-self: flex-end;
-  transition: background 0.3s;
+  transition: 0.3s;
+  align-self: flex-start; /* move button to left */
 }
 
 .submitBtn:hover {
-  background: #0b749e;
+  background-color: #096b8f;
+}
+
+.errorText {
+  color: #d32f2f;
+  font-weight: bold;
+}
+
+.successText {
+  color: #388e3c;
+  font-weight: bold;
 }
