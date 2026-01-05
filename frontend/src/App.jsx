@@ -3,17 +3,17 @@ import { useAuth } from "./context/AuthContext";
 import "./App.css";
 
 // Global Components
-import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
-import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
-import Loader from "./components/Loader/Loader";
+import Header from "./Components/Header/Header";
+import Footer from "./Components/Footer/Footer";
+import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute";
+import Loader from "./Components/Loader/Loader";
 
 // Pages
-import Home from "./pages/Home/Home";
-import Landing from "./pages/Landing/Landing";
-import AskQuestion from "./pages/AskQuestion/AskQuestion";
-import QuestionDetail from "./pages/QuestionDetail/QuestionDetail";
-import NotFound from "./pages/NotFound/NotFound";
+import Home from "./Pages/Home/Home";
+import Landing from "./Pages/Landing/Landing";
+import AskQuestion from "./Pages/AskQuestion/AskQuestion";
+import QuestionDetail from "./Pages/QuestionDetail/QuestionDetail";
+import NotFound from "./Pages/NotFound/NotFound";
 
 function App() {
   const { isLoading } = useAuth();
