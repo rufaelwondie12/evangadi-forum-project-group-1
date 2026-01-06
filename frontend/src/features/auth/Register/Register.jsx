@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import axiosBase from "@/services/axiosConfig";
+import { registerUser } from "../authService";
 import styles from "./Register.module.css";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
     firstname: "",
@@ -12,7 +14,6 @@ const Register = () => {
   });
 
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
@@ -22,83 +23,66 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
-    setSuccess("");
     setLoading(true);
-
     try {
-      await axiosBase.post("/user/register", formData);
-      setSuccess("Account created successfully. Please login.");
-      setFormData({
-        username: "",
-        firstname: "",
-        lastname: "",
-        email: "",
-        password: "",
-      });
+      await registerUser(formData);
+      navigate("/login");
     } catch (err) {
-      setError(
-        err.response?.data?.msg || "Registration failed. Please try again."
-      );
+      setError(err.message);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <section className={styles.container}>
-      <h2 className={styles.title}>Join the network</h2>
+    <form onSubmit={handleSubmit} className={styles.form}>
+      {error && <p className={styles.error_msg}>{error}</p>}
 
-      {error && <p className={styles.error}>{error}</p>}
-      {success && <p className={styles.success}>{success}</p>}
+      <input
+        type="email"
+        name="email"
+        placeholder="Email"
+        onChange={handleChange}
+        required
+      />
 
-      <form onSubmit={handleSubmit} className={styles.form}>
+      <div className={styles.name_row}>
         <input
-          name="username"
-          placeholder="Username"
-          value={formData.username}
-          onChange={handleChange}
-          required
-        />
-
-        <input
+          type="text"
           name="firstname"
           placeholder="First Name"
-          value={formData.firstname}
           onChange={handleChange}
           required
         />
-
         <input
+          type="text"
           name="lastname"
           placeholder="Last Name"
-          value={formData.lastname}
           onChange={handleChange}
           required
         />
+      </div>
 
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
+      <input
+        type="text"
+        name="username"
+        placeholder="User Name"
+        onChange={handleChange}
+        required
+      />
 
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleChange}
-          required
-        />
+      <input
+        type="password"
+        name="password"
+        placeholder="Password"
+        onChange={handleChange}
+        required
+      />
 
-        <button type="submit" className="orange_btn" disabled={loading}>
-          {loading ? "Creating..." : "Agree and Join"}
-        </button>
-      </form>
-    </section>
+      <button type="submit" className={styles.blue_btn} disabled={loading}>
+        {loading ? "Joining..." : "Agree and Join"}
+      </button>
+    </form>
   );
 };
 

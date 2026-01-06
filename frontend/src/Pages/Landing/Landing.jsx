@@ -1,22 +1,75 @@
-import React from "react";
-import "./Landing.module.css";
+import React, { useState } from "react";
+import Login from "@/features/auth/Login/Login";
+import Register from "@/features/auth/Register/Register";
+import classes from "./Landing.module.css";
 
 const Landing = () => {
-  // STUDENT TASK:
-  // 1. Create a state called 'isLogin' using useState (default true)
-  // 2. Create a function to toggle this state
+  const [isLogin, setIsLogin] = useState(true);
+
+  // Function to switch between Login and Register views
+  const toggleAuth = () => {
+    setIsLogin((prev) => !prev);
+  };
 
   return (
-    <section className="landing_container">
-      <div className="auth_box">
-        {/* STUDENT TASK: Conditionally render <Login /> or <Register /> here */}
-        <p>Login / Register logic goes here (Student Task)</p>
-      </div>
+    <section className={classes.landing_container}>
+      <div className={classes.inner_container}>
+        {/* --- LEFT SIDE: AUTHENTICATION BOX --- */}
+        <div className={classes.auth_box}>
+          {isLogin ? (
+            <div className={classes.form_wrapper}>
+              <h3>Login to your account</h3>
+              <p className={classes.toggle_link}>
+                Don't have an account?{" "}
+                <span onClick={toggleAuth}>Create a new account</span>
+              </p>
 
-      <div className="landing_about">
-        <h1>About Evangadi Networks</h1>
-        <p>No matter what stage of life you are in...</p>
-        <button className="orange_btn">HOW IT WORKS</button>
+              {/* Login component contains only the inputs and the Orange button */}
+              <Login hideHeader={true} />
+
+              <div className={classes.bottom_link}>
+                <span onClick={toggleAuth}>Create an account?</span>
+              </div>
+            </div>
+          ) : (
+            <div className={classes.form_wrapper}>
+              <h3>Join the network</h3>
+              <p className={classes.toggle_link}>
+                Already have an account?{" "}
+                <span onClick={toggleAuth}>Sign in</span>
+              </p>
+              <Register hideHeader={true} />
+              <p className={classes.terms_text}>
+                I agree to the <a href="/privacy">privacy policy</a> and{" "}
+                <a href="/terms">terms of service</a>.
+              </p>
+              <div className={classes.bottom_link}>
+                <span onClick={toggleAuth}>Already have an account?</span>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* --- RIGHT SIDE: ABOUT SECTION --- */}
+        <div className={classes.landing_about}>
+          <p className={classes.about_label}>About</p>
+          <h1>Evangadi Networks Q&A</h1>
+          <div className={classes.about_content}>
+            <p>
+              No matter what stage of life you are in, whether you’re just
+              starting elementary school or being promoted to CEO of a Fortune
+              500 company, you have much to offer to those who are trying to
+              follow in your footsteps.
+            </p>
+
+            <p>
+              Wheather you are willing to share your knowledge or you are just
+              looking to meet mentors of your own, please start by joining the
+              network here.
+            </p>
+          </div>
+          <button className={classes.how_it_works_btn}>HOW IT WORKS</button>
+        </div>
       </div>
     </section>
   );

@@ -10,7 +10,7 @@ const Home = () => {
         <Link to="/ask">
           <button className="blue_btn">Ask Question</button>
         </Link>
-
+        <h2>here is main page after login</h2>
         {/* Welcome message */}
         <h2 className={classes.welcome_text}>Welcome to the Forum</h2>
       </div>

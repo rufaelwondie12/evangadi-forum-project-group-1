@@ -1,0 +1,111 @@
+/* Container with the SVG background pattern */
+.landing_container {
+  background-image: url("../../assets/bg-svg-f.svg");
+  background-color: #f9f9f9;
+  background-size: cover;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+}
+
+.inner_container {
+  display: flex;
+  max-width: 1100px;
+  width: 100%;
+  gap: 60px;
+  align-items: flex-start;
+}
+
+/* The White Card */
+.auth_box {
+  flex: 1;
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+  max-width: 500px;
+}
+
+.form_wrapper h3 {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 5px;
+  color: #3b455a;
+}
+
+.toggle_link {
+  text-align: center;
+  font-size: 14px;
+  margin-bottom: 25px;
+  color: #555;
+}
+
+.toggle_link span {
+  color: #fe8402;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* About Section (Right Side) */
+.landing_about {
+  flex: 1;
+  padding-top: 10px;
+}
+
+.about_label {
+  color: #fe8402;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.landing_about h1 {
+  font-size: 38px;
+  font-weight: 700;
+  color: #3b455a;
+  margin-bottom: 20px;
+}
+
+.about_content p {
+  font-size: 20px;
+  line-height: 1.8;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+/* Bottom Links */
+.bottom_link {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.bottom_link span {
+  color: #fe8402;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.terms_text {
+  font-size: 16px;
+  color: #777;
+  text-align: center;
+  margin-top: 15px;
+}
+
+.terms_text a {
+  color: #fe8402;
+  text-decoration: none;
+}
+.how_it_works_btn {
+  background-color: #fe8402;
+  color: aliceblue;
+  padding: 20px 30px;
+  font-weight: bolder;
+  border: none;
+  margin-top: 20px;
+  font-size: 15px;
+  cursor: pointer;
+}

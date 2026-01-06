@@ -1,4 +1,4 @@
-import axiosBase from "@/services/axiosConfig";
+import axiosBase from "../../services/axiosConfig";
 
 export const loginUser = async (loginData) => {
   try {
@@ -23,6 +23,26 @@ export const registerUser = async (userData) => {
   } catch (error) {
     const message = error.response?.data?.msg || "Registration failed.";
     throw new Error(message);
+  }
+};
+
+export const checkAuth = async () => {
+  const token = localStorage.getItem("token");
+  if (!token) return null;
+
+  try {
+    // We call the backend to verify the token is still valid
+    const response = await axiosBase.get("/user/check", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    // Return the user data (e.g., { username, userid })
+    return response.data;
+  } catch (error) {
+    // If the token is invalid or expired, remove it and return null
+    localStorage.removeItem("token");
+    return null;
   }
 };
 
