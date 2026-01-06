@@ -1,69 +1,66 @@
 import React, { useState } from "react";
 import { useAuth } from "../../../context/AuthContext";
 import axiosBase from "@/services/axiosConfig";
-import styles from "./Login.module.css";
-
+import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
+// import api from "../../axiosConfig";
+import classes from "./Login.module.css";
+import { Link } from "react-router-dom";
 const Login = () => {
-  const { setUser } = useAuth();
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const emailDom = useRef();
+  const passwordDom = useRef();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
-    setLoading(true);
+
+    const emailValue = emailDom.current.value;
+    const passwordValue = passwordDom.current.value;
+
+    if (!emailValue || !passwordValue) {
+      alert("Please provide all required information");
+      return;
+    }
 
     try {
-      const response = await axiosBase.post("/user/login", {
-        email,
-        password,
+      const { data } = await api.post("/users/login", {
+        email: emailValue,
+        password: passwordValue,
       });
-
-      if (response.data.token) {
-        localStorage.setItem("token", response.data.token);
-      }
-
-      setUser(response.data.user);
-    } catch (err) {
-      setError(
-        err.response?.data?.msg || "Login failed. Please try again."
-      );
-    } finally {
-      setLoading(false);
+      alert("Login successfully.");
+      localStorage.setItem("token", data.token);
+      navigate("/");
+      console.log(data);
+    } catch (error) {
+      alert(error?.response?.data?.msg);
+      console.log(error.response.data);
     }
   };
 
   return (
-    <section className={styles.container}>
-      <h2 className={styles.title}>Login to your account</h2>
+    <>
+      
+      {/* Main Content */}
+      <main className={classes.container}>
+        {/* Login Form */}
+        <form onSubmit={handleSubmit} className={classes.inputGroup}>
+          <h2>Login to your account</h2>
 
-      {error && <p className={styles.error}>{error}</p>}
+          <input ref={emailDom} type="email" placeholder="Email" />
 
-      <form onSubmit={handleSubmit} className={styles.form}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
+          <input ref={passwordDom} type="password" placeholder="Password" />
 
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
+          <div className={classes.checkboxWrapper}>
+            <Link to="/terms">Forget password</Link>
+          </div>
 
-        <button type="submit" className="orange_btn" disabled={loading}>
-          {loading ? "Logging in..." : "Login"}
-        </button>
-      </form>
-    </section>
+          <button type="submit" className={classes.button}>
+            Login
+          </button>
+        </form>
+
+      </main>
+    </>
   );
 };
 
