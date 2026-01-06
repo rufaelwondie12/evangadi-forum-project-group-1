@@ -45,57 +45,25 @@ const Register = () => {
   };
 
   return (
-    <section className={styles.container}>
-      <h2 className={styles.title}>Join the network</h2>
+    <section className={classes.section}>
+      <h2>Join the network</h2>
+      <p>
+        Already have an account? <a href="/login">Login</a>
+      </p>
 
-      {error && <p className={styles.error}>{error}</p>}
-      {success && <p className={styles.success}>{success}</p>}
+      <form onSubmit={handleSubmit}>
+        <input ref={usernameDom} type="text" placeholder="Username" />
 
-      <form onSubmit={handleSubmit} className={styles.form}>
-        <input
-          name="username"
-          placeholder="Username"
-          value={formData.username}
-          onChange={handleChange}
-          required
-        />
+        <div className={classes["name-fields"]}>
+          <input ref={firstNameDom} type="text" placeholder="First Name" />
+          <input ref={lastNameDom} type="text" placeholder="Last Name" />
+        </div>
 
-        <input
-          name="firstname"
-          placeholder="First Name"
-          value={formData.firstname}
-          onChange={handleChange}
-          required
-        />
+        <input ref={emailDom} type="email" placeholder="Email" />
+        <input ref={passwordDom} type="password" placeholder="Password" />
 
-        <input
-          name="lastname"
-          placeholder="Last Name"
-          value={formData.lastname}
-          onChange={handleChange}
-          required
-        />
-
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
-
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleChange}
-          required
-        />
-
-        <button type="submit" className="orange_btn" disabled={loading}>
-          {loading ? "Creating..." : "Agree and Join"}
+        <button type="submit" className={classes.button}>
+          Agree and Join
         </button>
       </form>
     </section>
