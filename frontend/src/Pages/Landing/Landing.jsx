@@ -35,13 +35,28 @@ const Landing = () => {
             <div className={classes.form_wrapper}>
               <h3>Join the network</h3>
               <p className={classes.toggle_link}>
-                Already have an account?{" "}
+                Already have an account?
                 <span onClick={toggleAuth}>Sign in</span>
               </p>
               <Register hideHeader={true} />
               <p className={classes.terms_text}>
-                I agree to the <a href="/privacy">privacy policy</a> and{" "}
-                <a href="/terms">terms of service</a>.
+                I agree to the {""}
+                <a
+                  href="https://www.evangadi.com/legal/privacy/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  privacy policy{""}
+                </a>
+                {""} and {""}
+                <a
+                  href="https://www.evangadi.com/legal/privacy/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  terms of service
+                </a>
+                .
               </p>
               <div className={classes.bottom_link}>
                 <span onClick={toggleAuth}>Already have an account?</span>
@@ -53,7 +68,7 @@ const Landing = () => {
         {/* --- RIGHT SIDE: ABOUT SECTION --- */}
         <div className={classes.landing_about}>
           <p className={classes.about_label}>About</p>
-          <h1>Evangadi Networks Q&A</h1>
+          <h1>Evangadi Networks </h1>
           <div className={classes.about_content}>
             <p>
               No matter what stage of life you are in, whether you’re just
@@ -68,7 +83,16 @@ const Landing = () => {
               network here.
             </p>
           </div>
-          <button className={classes.how_it_works_btn}>HOW IT WORKS</button>
+          <button className={classes.how_it_works_btn}>
+            {" "}
+            <a
+              href="https://www.evangadi.com/how-it-works/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              HOW IT WORKS
+            </a>
+          </button>
         </div>
       </div>
     </section>

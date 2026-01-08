@@ -31,16 +31,13 @@ export const checkAuth = async () => {
   if (!token) return null;
 
   try {
-    // We call the backend to verify the token is still valid
-    const response = await axiosBase.get("/user/check", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+    const response = await axiosBase.get("/user/checkUser", {
+      headers: { Authorization: `Bearer ${token}` },
     });
-    // Return the user data (e.g., { username, userid })
-    return response.data;
+
+    // Ensure we don't return undefined if the response is empty (304)
+    return response.data || { token };
   } catch (error) {
-    // If the token is invalid or expired, remove it and return null
     localStorage.removeItem("token");
     return null;
   }

@@ -33,7 +33,7 @@ const Login = () => {
 
     try {
       const data = await loginUser({ email, password });
-      setUser(data.user);
+      setUser({ username: data.username, token: data.token });
       navigate("/");
     } catch (err) {
       setError(err.message);

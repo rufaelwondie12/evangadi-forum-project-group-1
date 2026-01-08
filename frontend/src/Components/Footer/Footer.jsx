@@ -1,22 +1,107 @@
 import React from "react";
-import evangadiFooter from "../../assets/images/footer-logo.png";
-import "./Footer.module.css";
+import styles from "./Footer.module.css";
+import logoWhite from "../../assets/images/footer-logo.png";
+import { Facebook, Instagram, Youtube } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="footer_wrapper">
-      <div className="footer_container">
-        {/* STUDENT TASK: Arrange these columns using Flexbox in Footer.css */}
-        <div className="footer_column">
-          <img src={evangadiFooter} alt="Logo" />
+    <footer className={styles.footerWrapper}>
+      <div className={styles.footerContainer}>
+        {/* Column 1: Socials */}
+        <div className={styles.footerSec}>
+          <img
+            src={logoWhite}
+            alt="Evangadi Logo"
+            className={styles.footerLogo}
+          />
+          <div className={styles.socialIcons}>
+            <a
+              href="https://www.facebook.com/evangaditech"
+              target="_blank"
+              rel="noreferrer"
+              className={styles.socialLink}
+            >
+              <Facebook size={20} />
+            </a>
+            <a
+              href="https://www.instagram.com/evangaditech/"
+              target="_blank"
+              rel="noreferrer"
+              className={styles.socialLink}
+            >
+              <Instagram size={20} />
+            </a>
+            <a
+              href="https://www.youtube.com/@EvangadiTech"
+              target="_blank"
+              rel="noreferrer"
+              className={styles.socialLink}
+            >
+              <Youtube size={20} />
+            </a>
+          </div>
         </div>
-        <div className="footer_column">
-          <h3>Useful Links</h3>
-          {/* List items go here */}
+
+        {/* Column 2: Useful Links (Direct to official site) */}
+        <div className={styles.footerSec}>
+          <h3 className={styles.columnTitle}>Useful Link</h3>
+          <ul className={styles.footerList}>
+            <li>
+              <a
+                href="https://www.evangadi.com/how-it-works/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                How it works
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www.evangadi.com/legal/terms/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Terms of Service
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www.evangadi.com/legal/privacy/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Privacy policy
+              </a>
+            </li>
+          </ul>
         </div>
-        <div className="footer_column">
-          <h3>Contact Info</h3>
-          {/* Contact details go here */}
+
+        {/* Column 3: Contact Info (Active Links) */}
+        <div className={styles.footerSec}>
+          <h3 className={styles.columnTitle}>Contact Info</h3>
+          <p className={styles.contactText}>
+            <a
+              href="https://www.evangadi.com"
+              target="_blank"
+              rel="noreferrer"
+              className={styles.contactLink}
+            >
+              Evangadi Networks
+            </a>
+          </p>
+          <p className={styles.contactText}>
+            <a
+              href="mailto:support@evangadi.com"
+              className={styles.contactLink}
+            >
+              support@evangadi.com
+            </a>
+          </p>
+          <p className={styles.contactText}>
+            <a href="tel:+12023862702" className={styles.contactLink}>
+              +1-202-386-2702
+            </a>
+          </p>
         </div>
       </div>
     </footer>

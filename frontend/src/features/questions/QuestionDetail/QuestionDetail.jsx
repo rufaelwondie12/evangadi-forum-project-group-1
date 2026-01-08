@@ -1,22 +1,147 @@
 import React, { useEffect, useState } from "react";
-import axiosBase from "../../../services/axiosConfig";
+import { useParams, Link } from "react-router-dom";
+import { User } from "lucide-react";
 
-const QuestionDetail = ({ questionId }) => {
-  const [question, setQuestion] = useState(null);
+// Import Services
+import { getSingleQuestion } from "../questionService";
+import { getAnswers, postAnswer } from "../../answers/answerService";
+
+import { getTimeAgo } from "../../../utilis/formatTime";
+
+// Import Loader Component
+import Loader from "../../../components/Loader/Loader";
+
+import QuestionHeaderUI from "./QuestionHeaderUI";
+import classes from "./QuestionDetail.module.css";
+
+const QuestionDetail = () => {
+  const { questionId } = useParams(); //grabs the ID from the browser address bar
+  const [question, setQuestion] = useState(null); //Holds the question title and description.
+  const [answers, setAnswers] = useState([]); //An array (list) of all community answers.
+  const [newAnswer, setNewAnswer] = useState(""); //What the user is currently typing in the box.
+  const [loading, setLoading] = useState(true); //True when the page first opens; false when data arrives.
+  const [posting, setPosting] = useState(false); //True only while the "Post" button is clicked and waiting for the server.
+
+  const fetchData = async () => {
+    if (!questionId) return; // Safety guard
+    try {
+      setLoading(true);
+      const [qData, aData] = await Promise.all([
+        getSingleQuestion(questionId),
+        getAnswers(questionId),
+      ]);
+
+      setQuestion(qData?.question);
+      setAnswers(aData?.answers || []);
+    } catch (err) {
+      console.error("Error fetching data:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    // Birhanu Task:
-    // 1. Create an async function
-    // 2. Fetch using axiosBase.get(`/question/getSingleQuestion/${questionId}`)
-    // 3. Handle loading and error states
+    fetchData();
   }, [questionId]);
 
+  const handlePostAnswer = async (e) => {
+    e.preventDefault(); //Stops the page from refreshing when you click submit.
+    if (!newAnswer.trim()) return alert("Please type an answer");
+
+    setPosting(true);
+    try {
+      await postAnswer(questionId, newAnswer);
+      setNewAnswer("");
+      alert("Answer posted successfully!");
+
+      const updatedAnswers = await getAnswers(questionId);
+      setAnswers(updatedAnswers?.answers || []);
+    } catch (err) {
+      console.error("Error posting answer:", err);
+      alert(err.response?.data?.msg || "Something went wrong.");
+    } finally {
+      setPosting(false);
+    }
+  };
+
+  // --- LOADING STATE ---
+  if (loading) {
+    return (
+      <div className={classes.detail_container}>
+        <Loader />
+      </div>
+    );
+  }
+
   return (
-    <div>
-      {/* Birhanu UI: Display the Title and Description of the question */}
-      <h2>QUESTION</h2>
-      <h3>{question?.title}</h3>
-      <p>{question?.description}</p>
+    <div className={classes.detail_container}>
+      <div className={classes.inner_container}>
+        <section className={classes.question_section}>
+          <QuestionHeaderUI questionData={question} />
+        </section>
+
+        <section className={classes.answers_section}>
+          <div className={classes.answers_header_group}>
+            <h2>Answer From The Community</h2>
+            {answers.length > 0 && (
+              <span className={classes.answer_count}>{answers.length}</span>
+            )}
+          </div>
+          <div className={classes.answer_list}>
+            {answers.length === 0 ? (
+              <p className={classes.no_answer}>
+                No answers yet. Be the first to help!
+              </p>
+            ) : (
+              answers.map((ans, index) => (
+                <div
+                  key={ans.answerid || index}
+                  className={classes.answer_item}
+                >
+                  <div className={classes.user_info}>
+                    <div className={classes.avatar}>
+                      <User size={35} />
+                    </div>
+                    <p className={classes.user_name}>{ans.username}</p>
+                    <span className={classes.time_stamp}>
+                      {getTimeAgo(ans.created_at)}
+                    </span>
+                  </div>
+                  <div className={classes.answer_text}>
+                    <p>{ans.answer}</p>
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+        </section>
+
+        <section className={classes.post_answer_section}>
+          <div className={classes.form_header}>
+            <h3>Answer The Top Question</h3>
+            <Link to="/" className={classes.go_back}>
+              Go to Question page
+            </Link>
+          </div>
+          <form onSubmit={handlePostAnswer} className={classes.answer_form}>
+            <textarea
+              rows="6"
+              placeholder="Your answer..."
+              value={newAnswer}
+              onChange={(e) => setNewAnswer(e.target.value)}
+              required
+            ></textarea>
+
+            <button
+              type="submit"
+              disabled={posting}
+              className={`blue_btn ${classes.submit_btn}`}
+            >
+              {posting ? "Posting..." : "Post Your Answer"}
+            </button>
+          </form>
+        </section>
+      </div>
     </div>
   );
 };

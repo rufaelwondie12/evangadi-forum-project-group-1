@@ -1,4 +1,4 @@
-import axiosBase from "../axios/axiosConfig";
+import axiosBase from "../../services/axiosConfig";
 
 export const getAnswers = async (question_id) => {
   const response = await axiosBase.get(`/answer/getAnswers/${question_id}`);
