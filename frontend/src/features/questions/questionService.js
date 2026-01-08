@@ -1,4 +1,4 @@
-import axiosBase from "../../services/axiosConfig";
+import axiosBase from "../axios/axiosConfig";
 
 // For Eyerus
 export const getAllQuestions = async () => {

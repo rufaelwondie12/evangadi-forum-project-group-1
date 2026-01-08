@@ -6,15 +6,14 @@ import "./App.css";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
-import Loader from "./Components/Loader/Loader";
+import Loader from "./components/Loader/Loader";
 
 // Pages
-import Home from "./Pages/Home/Home";
+import Home from "./pages/Home/Home";
 import Landing from "./pages/Landing/Landing";
-
+import AskQuestion from "./pages/AskQuestion/AskQuestion";
 import QuestionDetail from "./pages/QuestionDetail/QuestionDetail";
 import NotFound from "./pages/NotFound/NotFound";
-import AskQuestion from "./Pages/AskQuestion/AskQuestion";
 
 function App() {
   const { isLoading } = useAuth();
@@ -23,13 +22,13 @@ function App() {
     return <Loader />;
   }
 
-  
   return (
     <>
       <Header />
 
       <main className="content-container">
         <Routes>
+          {/* Protected Routes */}
           <Route
             path="/"
             element={
@@ -39,13 +38,13 @@ function App() {
             }
           />
           <Route
-             path="/ask"
+            path="/ask"
             element={
-             <ProtectedRoute>
+              <ProtectedRoute>
                 <AskQuestion />
               </ProtectedRoute>
             }
-          /> 
+          />
           <Route
             path="/question/:questionId"
             element={
@@ -58,8 +57,6 @@ function App() {
           {/* Public Routes */}
           <Route path="/login" element={<Landing />} />
           <Route path="/register" element={<Landing />} />
-           {/* <Route path="/" element={<Home />} /> 
-           <Route path="/ask" element={<AskQuestion />} />  */}
 
           <Route path="*" element={<NotFound />} />
         </Routes>

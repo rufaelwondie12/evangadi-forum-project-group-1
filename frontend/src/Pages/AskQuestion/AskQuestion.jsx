@@ -1,21 +1,21 @@
+import React from "react";
 import QuestionForm from "../../features/questions/QuestionForm/QuestionForm";
-import { useEffect } from "react";
-const AskQuestion = () => {
-  useEffect(() => {
-    if (!localStorage.getItem("token")) {
-      localStorage.setItem(
-        "token",
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Inh4eHgiLCJ1c2VyaWQiOjIsImlhdCI6MTc2NzY0MTM4MywiZXhwIjoxNzY3NzI3NzgzfQ.v4l2bbI96a06WYUNC9RKeMPu0cg6IDxzY_-tIIYQoYg"
-      );
-      localStorage.setItem(
-        "user",
-        JSON.stringify({ username: "xxxx", userid: 2 })
-      );
-    }
-  }, []);
+import styles from "./AskQuestion.module.css";
 
+const AskQuestion = () => {
   return (
-    <div style={{ maxWidth: "800px", margin: "40px auto" }}>
+    <div className="content-container">
+      <div className={styles.instructions}>
+        <h2>Steps to write a good question</h2>
+        <ul>
+          <li>Summarize your problem in a one-line title.</li>
+          <li>Describe your problem in more detail.</li>
+          <li>Explain what you tried and what you expected to happen.</li>
+          <li>Review your question and post it to the site.</li>
+        </ul>
+      </div>
+
+      {/* The Feature component containing the logic */}
       <QuestionForm />
     </div>
   );
