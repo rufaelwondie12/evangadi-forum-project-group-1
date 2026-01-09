@@ -1,15 +1,18 @@
 import React from "react";
+import QuestionHeaderUI from "../../features/questions/QuestionDetail/QuestionHeaderUI";
+import QuestionDetail from "../../features/questions/QuestionDetail/QuestionDetail";
+import classes from "./QuestionDetail.module.css";
 
-const QuestionDetail = () => {
+const QuestionDetailPage = () => {
   return (
-    <div>
-      <h1>Question Detail Page</h1>
-      <p>
-        Student Task: Implement the logic to fetch and display a single question
-        and its answers here.
-      </p>
-    </div>
+    <>
+      <main className={classes.page_container}>
+        {/* <QuestionHeaderUI /> */}
+        {/* Calling the Feature logic */}
+        <QuestionDetail />
+      </main>
+    </>
   );
 };
 
-export default QuestionDetail;
+export default QuestionDetailPage;

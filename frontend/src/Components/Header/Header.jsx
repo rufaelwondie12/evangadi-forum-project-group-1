@@ -1,26 +1,52 @@
 import React from "react";
-import evangadiLogo from "../../assets/images/header-logo.png";
-import "./Header.module.css";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
+import classes from "./Header.module.css";
+import logo from "../../assets/images/Header-logo.png";
 
 const Header = () => {
-  // STUDENT TASK:
-  // 1. Get the 'user' and 'logout' function from your AuthContext
-  // 2. Use a ternary operator to show "Log out" if user exists, or "SIGN IN" if they don't
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleAuth = () => {
+    if (user) {
+      // If logged in, log the user out and redirect to home
+      logout();
+      navigate("/");
+    } else {
+      // If not logged in, send them to the register/login page
+      navigate("/register");
+    }
+  };
 
   return (
-    <nav className="header_wrapper">
-      <div className="header_container">
-        <img src={evangadiLogo} alt="Logo" />
-        <div className="nav_links">
-          <span>Home</span>
-          <span>How it works</span>
-          <button className="blue_btn">
-            {/* STUDENT TASK: Logic goes here */}
-            SIGN IN
+    <header className={classes.headerWrapper}>
+      <div className={classes.headerContainer}>
+        {/* Logo links back to the landing page */}
+        <Link to="/" className={classes.logoLink}>
+          <img src={logo} alt="Evangadi Logo" />
+        </Link>
+
+        <nav className={classes.navMenu}>
+          <Link to="/" className={classes.navItem}>
+            Home
+          </Link>
+
+          <a
+            href="https://www.evangadi.com/how-it-works/"
+            target="_blank"
+            rel="noreferrer"
+            className={classes.navItem}
+          >
+            How it Works
+          </a>
+
+          <button className={classes.authButton} onClick={handleAuth}>
+            {user ? "LOG OUT" : "SIGN IN"}
           </button>
-        </div>
+        </nav>
       </div>
-    </nav>
+    </header>
   );
 };
 

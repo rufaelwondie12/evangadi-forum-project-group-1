@@ -1,25 +1,24 @@
-import axiosBase from "@/services/axiosConfig";
+import axiosBase from "../../services/axiosConfig";
 
 export const loginUser = async (loginData) => {
   try {
-    const response = await axiosBase.post("/users/login", loginData);
+    const response = await axiosBase.post("/user/login", loginData);
 
-    // If the backend returns { token, username }
     if (response.data.token) {
       localStorage.setItem("token", response.data.token);
     }
 
     return response.data;
   } catch (error) {
-    // Standardizing the error message for the whole team
     const message =
       error.response?.data?.msg || "Login failed. Please try again.";
     throw new Error(message);
   }
 };
+
 export const registerUser = async (userData) => {
   try {
-    const response = await axiosBase.post("/users/register", userData);
+    const response = await axiosBase.post("/user/register", userData);
     return response.data;
   } catch (error) {
     const message = error.response?.data?.msg || "Registration failed.";
@@ -27,8 +26,24 @@ export const registerUser = async (userData) => {
   }
 };
 
+export const checkAuth = async () => {
+  const token = localStorage.getItem("token");
+  if (!token) return null;
+
+  try {
+    const response = await axiosBase.get("/user/checkUser", {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    // Ensure we don't return undefined if the response is empty (304)
+    return response.data || { token };
+  } catch (error) {
+    localStorage.removeItem("token");
+    return null;
+  }
+};
+
 export const logoutUser = () => {
   localStorage.removeItem("token");
-  // to force a page reload here to clear the React state
   window.location.href = "/login";
 };

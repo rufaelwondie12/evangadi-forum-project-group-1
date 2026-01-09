@@ -1,0 +1,42 @@
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #1f2937;
+}
+.title-icon {
+  color: #2563eb;
+}
+.description {
+  margin-top: 16px;
+  border-bottom: 1px solid #bfdbfe; /* blue-200 */
+  padding-bottom: 16px;
+  color: #4b5563;
+  line-height: 1.6;
+  font-style: italic;
+}
+.back_button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  color: #3b455a;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 0;
+  margin-bottom: 20px;
+  margin: 0 auto;
+  transition: color 0.2s;
+}
+
+.back_button:hover {
+  color: #fe8402;
+}
+
+.back_button span {
+  text-decoration: underline;
+}

@@ -22,38 +22,41 @@ export const AuthProvider = ({ children }) => {
     }
 
     try {
-      const { data } = await axiosBase.get("/users/checkUser", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+      const response = await axiosBase.get("/user/checkUser", {
+        headers: { Authorization: `Bearer ${token}` },
       });
 
-      setUser(data);
+      // Guard against undefined response data
+      if (response.data) {
+        setUser(response.data);
+      } else {
+        setUser(null);
+      }
+
+      setIsLoading(false);
     } catch (error) {
-      console.log("Auth check failed:", error.response?.data?.msg);
+      console.error("Auth check failed:", error);
       localStorage.removeItem("token");
       setUser(null);
-    } finally {
       setIsLoading(false);
     }
   };
 
-  // Login handler that components will call
+  // Inside AuthContext.jsx
   const login = async (loginData) => {
-    // 1. Call the API service
     const data = await loginUser(loginData);
-
-    // 2. Update the global state with user info
-
-    setUser(data.user || data); //to save the user's name or ID into the AuthContext
-
+    // Specifically pick the fields you want to ensure 'user' isn't the whole response
+    const userObj = data.user
+      ? data.user
+      : { username: data.username, userid: data.userid };
+    setUser(userObj);
     return data;
   };
 
   const logout = () => {
-    localStorage.removeItem("token"); // Clears the storage
-    setUser(null); // Resets global state
-    navigate("/login"); // Redirects to login page
+    localStorage.removeItem("token");
+    setUser(null);
+    navigate("/login");
   };
 
   useEffect(() => {
@@ -61,8 +64,12 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   return (
+    // We pass setUser only if necessary, but keep it for flexibility
     <AuthContext.Provider value={{ user, login, setUser, logout, isLoading }}>
-      {children}
+      {/* This !isLoading && children is great because it prevents App.js 
+         from rendering routes before the first check completes 
+      */}
+      {!isLoading && children}
     </AuthContext.Provider>
   );
 };

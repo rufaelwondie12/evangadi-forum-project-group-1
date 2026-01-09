@@ -1,8 +1,7 @@
 import classes from './AnswerList.module.css';
 
-const AnswerList = ({ answers }) => {
   return (
-    <div className={classes.answer_list_wrapper}>
+    <div className={classes.answers_container}>
       <h3>Answers From The Community</h3>
       <hr />
 
