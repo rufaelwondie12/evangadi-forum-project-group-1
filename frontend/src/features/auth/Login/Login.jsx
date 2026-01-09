@@ -11,6 +11,10 @@ const Login = () => {
   const emailDom = useRef();
   const passwordDom = useRef();
 
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 

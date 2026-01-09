@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import axiosBase from "@/services/axiosConfig";
+import { registerUser } from "../authService";
 import styles from "./Register.module.css";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
     firstname: "",
@@ -12,7 +14,6 @@ const Register = () => {
   });
 
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
@@ -22,23 +23,12 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
-    setSuccess("");
     setLoading(true);
-
     try {
-      await axiosBase.post("/user/register", formData);
-      setSuccess("Account created successfully. Please login.");
-      setFormData({
-        username: "",
-        firstname: "",
-        lastname: "",
-        email: "",
-        password: "",
-      });
+      await registerUser(formData);
+      navigate("/login");
     } catch (err) {
-      setError(
-        err.response?.data?.msg || "Registration failed. Please try again."
-      );
+      setError(err.message);
     } finally {
       setLoading(false);
     }

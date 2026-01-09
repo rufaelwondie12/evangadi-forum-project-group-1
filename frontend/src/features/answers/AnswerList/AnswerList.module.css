@@ -1,0 +1,28 @@
+.answer_list_wrapper {
+  margin-top: 20px;
+}
+
+.answer_card {
+  padding: 12px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.user_info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.avatar {
+  font-size: 18px;
+}
+
+.username {
+  font-weight: 600;
+}
+
+.answer_text {
+  font-size: 15px;
+  line-height: 1.5;
+}

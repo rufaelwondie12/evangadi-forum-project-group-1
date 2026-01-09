@@ -1,0 +1,135 @@
+.landing_container {
+  padding: 80px 20px;
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inner_container {
+  max-width: 1100px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 50px;
+}
+
+/* --- LEFT SIDE: AUTH BOX --- */
+.auth_box {
+  flex: 1;
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+}
+
+.form_wrapper h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.toggle_link {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 15px;
+}
+
+.toggle_link span {
+  color: #fe8402;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.toggle_link span:hover,
+.bottom_link span:hover {
+  text-decoration: underline;
+}
+
+.bottom_link {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.bottom_link span {
+  color: #fe8402;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.terms_text {
+  font-size: 13px;
+  color: #666;
+  margin-top: 15px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.terms_text a {
+  color: #fe8402;
+  text-decoration: none;
+}
+
+/* --- RIGHT SIDE: ABOUT --- */
+.landing_about {
+  flex: 1;
+  color: #3b455a;
+}
+
+.about_label {
+  color: #fe8402;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.landing_about h1 {
+  font-size: 40px;
+  margin-bottom: 20px;
+  color: #0d1b3e;
+}
+
+.about_content p {
+  line-height: 1.8;
+  margin-bottom: 20px;
+  font-size: 16px;
+  color: #555;
+}
+
+/* --- BUTTON STYLING --- */
+.how_it_works_btn {
+  background-color: #fe8402;
+  border: none;
+  border-radius: 4px;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  padding: 0;
+}
+
+.how_it_works_btn:hover {
+  background-color: #e67602;
+}
+
+.how_it_works_btn a {
+  display: inline-block;
+  color: #ffffff;
+  padding: 12px 35px;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 850px) {
+  .inner_container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .auth_box {
+    width: 100%;
+    margin-bottom: 40px;
+  }
+}
