@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
-import { ArrowUp } from "lucide-react"; // Import an arrow icon
+import { ArrowUp, Search } from "lucide-react";
 import QuestionList from "../../features/questions/QuestionList/QuestionList";
 import classes from "./Home.module.css";
 
@@ -25,11 +25,16 @@ const Home = () => {
           Ask Question
         </button>
         <h2 className={classes.welcome}>
-          Welcome: <span className={classes.username}>{user?.username}</span>
+          <span className={classes.wave_emoji}>👋</span> {""}
+          Welcome:
+          <span className={classes.username}>
+            <strong>{user?.username}</strong>
+          </span>
         </h2>
       </div>
 
       <div className={classes.search_section}>
+        <Search className={classes.search_icon} size={20} />
         <input
           type="text"
           placeholder="Search questions..."
@@ -37,6 +42,23 @@ const Home = () => {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
+        {searchTerm && (
+          <button
+            onClick={() => setSearchTerm("")}
+            style={{
+              position: "absolute",
+              right: "20px",
+              top: "50%",
+              transform: "translateY(-50%)",
+              border: "none",
+              background: "none",
+              cursor: "pointer",
+              color: "#999",
+            }}
+          >
+            ✕
+          </button>
+        )}
       </div>
 
       <div className={classes.question_list_wrapper}>

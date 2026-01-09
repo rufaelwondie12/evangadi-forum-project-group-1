@@ -38,7 +38,7 @@ const Landing = () => {
                 Already have an account?
                 <span onClick={toggleAuth}>Sign in</span>
               </p>
-              <Register hideHeader={true} />
+              <Register hideHeader={true} onSuccess={() => setIsLogin(true)} />
               <p className={classes.terms_text}>
                 I agree to the {""}
                 <a

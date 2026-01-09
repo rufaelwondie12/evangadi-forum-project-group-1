@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { User } from "lucide-react";
+import { CircleUser } from "lucide-react";
 import { getAllQuestions } from "../questionService";
 import classes from "./QuestionList.module.css";
 
@@ -68,7 +68,7 @@ const QuestionList = ({ searchTerm }) => {
           >
             <div className={classes.user_info}>
               <div className={classes.avatar}>
-                <User size={35} />
+                <CircleUser size={40} strokeWidth={1.5} color="#787878" />
               </div>
               <p className={classes.user_name}>{q.username}</p>
             </div>
