@@ -4,8 +4,7 @@ import Register from "@/features/auth/Register/Register";
 import classes from "./Landing.module.css";
 
 const Landing = () => {
-  const [isLogin, setIsLogin] = useState(true);
-
+const [isLogin, setIsLogin] = useState(true);
   // Function to switch between Login and Register views
   const toggleAuth = () => {
     setIsLogin((prev) => !prev);
