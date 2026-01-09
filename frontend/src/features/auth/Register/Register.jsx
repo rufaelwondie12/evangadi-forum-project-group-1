@@ -35,54 +35,28 @@ const Register = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className={styles.form}>
-      {error && <p className={styles.error_msg}>{error}</p>}
+    <section className={classes.section}>
+      <h2>Join the network</h2>
+      <p>
+        Already have an account? <a href="/login">Login</a>
+      </p>
 
-      <input
-        type="email"
-        name="email"
-        placeholder="Email"
-        onChange={handleChange}
-        required
-      />
+      <form onSubmit={handleSubmit}>
+        <input ref={usernameDom} type="text" placeholder="Username" />
 
-      <div className={styles.name_row}>
-        <input
-          type="text"
-          name="firstname"
-          placeholder="First Name"
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="text"
-          name="lastname"
-          placeholder="Last Name"
-          onChange={handleChange}
-          required
-        />
-      </div>
+        <div className={classes["name-fields"]}>
+          <input ref={firstNameDom} type="text" placeholder="First Name" />
+          <input ref={lastNameDom} type="text" placeholder="Last Name" />
+        </div>
 
-      <input
-        type="text"
-        name="username"
-        placeholder="User Name"
-        onChange={handleChange}
-        required
-      />
+        <input ref={emailDom} type="email" placeholder="Email" />
+        <input ref={passwordDom} type="password" placeholder="Password" />
 
-      <input
-        type="password"
-        name="password"
-        placeholder="Password"
-        onChange={handleChange}
-        required
-      />
-
-      <button type="submit" className={styles.blue_btn} disabled={loading}>
-        {loading ? "Joining..." : "Agree and Join"}
-      </button>
-    </form>
+        <button type="submit" className={classes.button}>
+          Agree and Join
+        </button>
+      </form>
+    </section>
   );
 };
 
