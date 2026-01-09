@@ -1,0 +1,88 @@
+.footerWrapper {
+  background-color: #3b455a;
+  color: #adb5bd;
+  padding: 60px 20px;
+}
+
+.footerContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.footerLogo {
+  height: 25px;
+  margin-bottom: 30px;
+}
+
+.socialIcons {
+  display: flex;
+  gap: 15px;
+}
+
+.socialLink {
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.socialLink:hover {
+  background-color: #ffffff;
+  color: #3b455a;
+}
+
+.columnTitle {
+  color: #ffffff;
+  font-size: 1.25rem;
+  margin-bottom: 25px;
+}
+
+.footerList {
+  list-style: none;
+  padding: 0;
+}
+
+.footerList li {
+  margin-bottom: 12px;
+}
+
+.footerList a {
+  color: #adb5bd;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footerList a:hover {
+  color: #ffffff;
+}
+
+.contactText {
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+/* Specific styling for the active Email and Phone links */
+.contactLink {
+  color: #adb5bd;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.contactLink:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .footerContainer {
+    grid-template-columns: 1fr;
+  }
+}

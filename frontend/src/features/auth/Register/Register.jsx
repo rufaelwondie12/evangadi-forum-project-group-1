@@ -52,7 +52,7 @@ const Register = () => {
   };
 
   return (
-    <section>
+    <section className={classes.section}>
       <h2>Join the network</h2>
       <p>
         Already have an account? <a href="/login">Login</a>

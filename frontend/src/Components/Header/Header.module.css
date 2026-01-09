@@ -3,3 +3,63 @@
   position: sticky;
   top: 0;
   z-index: 1000; /* Keeps it above everything else */
+.headerWrapper {
+  background-color: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+}
+
+.headerContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+}
+
+.logoLink img {
+  height: 30px;
+}
+
+.navMenu {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.navItem {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.navItem:hover {
+  color: #ff8500; /* Evangadi Orange */
+}
+
+.authButton {
+  background-color: #516cf0;
+  color: white;
+  border: none;
+  padding: 8px 45px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.authButton:hover {
+  background-color: #ff8500;
+}
+
+@media (max-width: 768px) {
+  .navItem {
+    display: none;
+  }
+}

@@ -1,0 +1,92 @@
+/* Section wrapper */
+section {
+  max-width: 420px;
+  margin: 80px auto;
+  padding: 35px;
+  background: #ffffff;
+  border-radius: 6px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  font-family: Arial, sans-serif;
+}
+
+/* Title */
+section h2 {
+  font-size: 22px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 8px;
+  color: #1f1f1f;
+}
+
+/* Subtitle */
+section p {
+  text-align: center;
+  font-size: 13px;
+  margin-bottom: 25px;
+  color: #555;
+}
+
+section p a {
+  color: #ff8c00;
+  text-decoration: none;
+}
+
+/* Form */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Inputs */
+form input {
+  width: 100%;
+  padding: 12px;
+  font-size: 14px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  outline: none;
+}
+
+form input:focus {
+  border-color: #5a67f2;
+}
+
+/* First + Last name row */
+.name-fields {
+  display: flex;
+  gap: 10px;
+}
+
+.name-fields input {
+  flex: 1;
+}
+
+/* Submit button */
+.button {
+  margin-top: 10px;
+  padding: 12px;
+  background: #5a67f2;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: #434ab8;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  section {
+    margin: 40px 20px;
+    padding: 25px 20px;
+  }
+
+  .name-fields {
+    flex-direction: column;
+  }
+}

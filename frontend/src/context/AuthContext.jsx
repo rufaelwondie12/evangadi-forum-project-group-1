@@ -22,22 +22,34 @@ export const AuthProvider = ({ children }) => {
     }
 
     try {
-      const { data } = await axiosBase.get("/user/check");
+      const response = await axiosBase.get("/user/checkUser", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
 
-      setUser(data);
+      // Guard against undefined response data
+      if (response.data) {
+        setUser(response.data);
+      } else {
+        setUser(null);
+      }
+
+      setIsLoading(false);
     } catch (error) {
-      console.log("Auth check failed:", error.response?.data?.msg);
+      console.error("Auth check failed:", error);
       localStorage.removeItem("token");
       setUser(null);
-    } finally {
       setIsLoading(false);
     }
   };
 
+  // Inside AuthContext.jsx
   const login = async (loginData) => {
     const data = await loginUser(loginData);
-    // After loginUser saves the token, we update the user state
-    setUser(data.user || data);
+    // Specifically pick the fields you want to ensure 'user' isn't the whole response
+    const userObj = data.user
+      ? data.user
+      : { username: data.username, userid: data.userid };
+    setUser(userObj);
     return data;
   };
 
@@ -52,7 +64,11 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   return (
+    // We pass setUser only if necessary, but keep it for flexibility
     <AuthContext.Provider value={{ user, login, setUser, logout, isLoading }}>
+      {/* This !isLoading && children is great because it prevents App.js 
+         from rendering routes before the first check completes 
+      */}
       {!isLoading && children}
     </AuthContext.Provider>
   );

@@ -4,12 +4,19 @@ import { useAuth } from "../../context/AuthContext";
 import Loader from "../Loader/Loader";
 
 const ProtectedRoute = ({ children }) => {
-  const { user, isLoading } = useAuth();
+  const auth = useAuth();
 
-  if (isLoading) {
-    return <Loader />;
+  // If auth is undefined, the Provider isn't wrapping this component correctly
+  if (!auth) {
+    console.error("AuthContext is missing!");
+    return <Navigate to="/login" />;
   }
 
+  const { user, isLoading } = auth;
+
+  if (isLoading) return <Loader />;
+
+  // If user is null OR undefined, they aren't logged in
   if (!user) {
     return <Navigate to="/login" />;
   }

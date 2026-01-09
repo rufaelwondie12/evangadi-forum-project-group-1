@@ -1,0 +1,86 @@
+/* Individual Question Item */
+.question_item {
+  display: flex;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border-color);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.2s ease;
+}
+
+.question_item:hover {
+  background-color: #dbd8d8;
+  color: #3b50b6;
+}
+
+.question_item:hover .avatar {
+  background-color: var(--secondary-blue);
+  color: white;
+  transform: scale(1.1);
+}
+
+.question_item:hover .user_name,
+.question_item:hover .question_title {
+  color: var(--secondary-blue);
+}
+
+/* Left side: Avatar and Username */
+.user_info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 120px;
+  text-align: center;
+}
+
+.avatar {
+  font-size: 40px;
+  margin-bottom: 5px;
+  color: var(--text-gray);
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%; /* Makes hover background circular if applicable */
+}
+
+.user_name {
+  font-size: 14px;
+  color: var(--text-gray);
+  word-break: break-all;
+}
+
+/* Middle: Question Title */
+.question_content {
+  flex: 1;
+  padding: 0 30px;
+}
+
+.question_title {
+  font-size: 25px;
+  font-weight: 500;
+  color: #333;
+}
+
+/* Right side: Arrow indicator */
+.arrow {
+  font-size: 24px;
+  color: #2f0707;
+  padding-right: 20px;
+}
+
+/* States */
+.loading,
+.no_data {
+  text-align: center;
+  padding: 50px;
+  color: var(--text-gray);
+  font-style: italic;
+}
+
+@media (max-width: 600px) {
+  .user_info {
+    width: 80px;
+  }
+}
