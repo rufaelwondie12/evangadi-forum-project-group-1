@@ -1,23 +1,17 @@
-import React, { useState } from "react";
-import { useAuth } from "../../../context/AuthContext";
-import axiosBase from "@/services/axiosConfig";
-import { useRef } from "react";
-import { useNavigate } from "react-router-dom";
-// import api from "../../axiosConfig";
+import React, { useRef } from "react";
+// import { useAuth } from "../../../context/AuthContext";
+import axiosBase from "../../../services/axiosConfig";
 import classes from "./Login.module.css";
-import { Link } from "react-router-dom";
+
 const Login = () => {
+  // const { setUser } = useAuth();
   const navigate = useNavigate();
   const emailDom = useRef();
   const passwordDom = useRef();
-
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
+  // Sami/Yosi: Add your state for email and password here
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const emailValue = emailDom.current.value;
     const passwordValue = passwordDom.current.value;
 
@@ -27,7 +21,7 @@ const Login = () => {
     }
 
     try {
-      const { data } = await api.post("/users/login", {
+      const { data } = await axiosBase.post("/user/login", {
         email: emailValue,
         password: passwordValue,
       });
@@ -42,29 +36,21 @@ const Login = () => {
   };
 
   return (
-    <>
-      
-      {/* Main Content */}
-      <main className={classes.container}>
-        {/* Login Form */}
-        <form onSubmit={handleSubmit} className={classes.inputGroup}>
-          <h2>Login to your account</h2>
+    <section className={classes.container}>
+      <h2>Login to your account</h2>
+      <form onSubmit={handleSubmit} className={classes.inputGroup}>
+        {/* Add Email and Password inputs here */}
+        <input ref={emailDom} type="email" placeholder="Email" />
 
-          <input ref={emailDom} type="email" placeholder="Email" />
-
-          <input ref={passwordDom} type="password" placeholder="Password" />
-
-          <div className={classes.checkboxWrapper}>
-            <Link to="/terms">Forget password</Link>
-          </div>
-
-          <button type="submit" className={classes.button}>
-            Login
-          </button>
-        </form>
-
-      </main>
-    </>
+        <input ref={passwordDom} type="password" placeholder="Password" />
+        <div className={classes.checkboxWrapper}>
+          <Link to="/terms">Forget password</Link>
+        </div>
+        <button type="submit" className={classes.button}>
+          Login
+        </button>
+      </form>
+    </section>
   );
 };
 
