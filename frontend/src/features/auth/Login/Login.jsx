@@ -1,19 +1,15 @@
 import React, { useState } from "react";
 import { useAuth } from "../../../context/AuthContext";
-import { Eye, EyeOff } from "lucide-react";
-import { loginUser } from "../authService";
+import axiosBase from "@/services/axiosConfig";
+import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
+// import api from "../../axiosConfig";
 import classes from "./Login.module.css";
-import { useNavigate, Link } from "react-router-dom";
-
+import { Link } from "react-router-dom";
 const Login = () => {
-  const { setUser } = useAuth();
   const navigate = useNavigate();
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
+  const emailDom = useRef();
+  const passwordDom = useRef();
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -21,68 +17,54 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
 
-    // 1. Validate length before starting the loading state
-    if (password.length < 8) {
-      setError("Password must be at least 8 characters long.");
+    const emailValue = emailDom.current.value;
+    const passwordValue = passwordDom.current.value;
+
+    if (!emailValue || !passwordValue) {
+      alert("Please provide all required information");
       return;
     }
 
-    setLoading(true);
-
     try {
-      const data = await loginUser({ email, password });
-      setUser({ username: data.username, token: data.token });
+      const { data } = await api.post("/users/login", {
+        email: emailValue,
+        password: passwordValue,
+      });
+      alert("Login successfully.");
+      localStorage.setItem("token", data.token);
       navigate("/");
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
+      console.log(data);
+    } catch (error) {
+      alert(error?.response?.data?.msg);
+      console.log(error.response.data);
     }
   };
 
   return (
-    <section className={classes.container}>
-      {error && <p className={classes.error}>{error}</p>}
+    <>
+      
+      {/* Main Content */}
+      <main className={classes.container}>
+        {/* Login Form */}
+        <form onSubmit={handleSubmit} className={classes.inputGroup}>
+          <h2>Login to your account</h2>
 
-      <form onSubmit={handleSubmit} className={classes.form}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
+          <input ref={emailDom} type="email" placeholder="Email" />
 
-        <div className={classes.password_wrapper}>
-          <input
-            type={showPassword ? "text" : "password"}
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          <span className={classes.eye_icon} onClick={togglePasswordVisibility}>
-            {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-          </span>
-        </div>
+          <input ref={passwordDom} type="password" placeholder="Password" />
 
-        <div className={classes.forgot_link_container}>
-          <Link to="/" className={classes.forgot_link}>
-            Forgot password?
-          </Link>
-        </div>
+          <div className={classes.checkboxWrapper}>
+            <Link to="/terms">Forget password</Link>
+          </div>
 
-        <button
-          type="submit"
-          className={`orange_btn ${classes.login_submit}`}
-          disabled={loading}
-        >
-          {loading ? "Logging in..." : "Login"}
-        </button>
-      </form>
-    </section>
+          <button type="submit" className={classes.button}>
+            Login
+          </button>
+        </form>
+
+      </main>
+    </>
   );
 };
 

@@ -1,51 +1,94 @@
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+/* Section wrapper */
+section {
+  max-width: 420px;
+  margin: 80px auto;
+  padding: 35px;
+  background: #ffffff;
+  border-radius: 6px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  font-family: Arial, sans-serif;
 }
 
-.form input {
+/* Title */
+section h2 {
+  font-size: 22px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 8px;
+  color: #1f1f1f;
+}
+
+/* Subtitle */
+section p {
+  text-align: center;
+  font-size: 13px;
+  margin-bottom: 25px;
+  color: #555;
+}
+
+section p a {
+  color: #ff8c00;
+  text-decoration: none;
+}
+
+/* Form */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Inputs */
+form input {
   width: 100%;
-  padding: 15px;
-  border: 1px solid #ced4da;
+  padding: 12px;
+  font-size: 14px;
   border-radius: 4px;
-  font-size: 15px;
+  border: 1px solid #ddd;
   outline: none;
 }
 
-.form input:focus {
-  border-color: #516cf0;
+form input:focus {
+  border-color: #5a67f2;
 }
 
-/* Multi-column row for First/Last names */
-.name_row {
+/* First + Last name row */
+.name-fields {
   display: flex;
-  gap: 15px;
+  gap: 10px;
 }
 
-/* Blue Button specifically for Join/Register */
-.blue_btn {
-  background-color: #516cf0; /* Evangadi Register Blue */
-  color: white;
-  border: none;
-  padding: 15px;
-  font-size: 16px;
-  font-weight: 500;
-  border-radius: 4px;
-  cursor: pointer;
+.name-fields input {
+  flex: 1;
+}
+
+/* Submit button */
+.button {
   margin-top: 10px;
-  transition: background 0.3s;
+  padding: 12px;
+  background: #5a67f2;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
 }
 
-.blue_btn:hover {
-  background-color: #3f54c7;
+.button:hover {
+  background: #434ab8;
 }
 
-.error_msg {
-  color: #d0393e;
-  font-size: 14px;
-  text-align: center;
-  margin-bottom: 10px;
+/* Responsive */
+@media (max-width: 480px) {
+  section {
+    margin: 40px 20px;
+    padding: 25px 20px;
+  }
+
+  .name-fields {
+    flex-direction: column;
+  }
 }
 .success_message_bottom p {
   color: #fe8402;

@@ -1,81 +1,66 @@
-/* Apply border-box globally to this component to prevent overflow */
-.container,
-.container * {
-  box-sizing: border-box !important;
-}
-
+/* Page container */
 .container {
-  width: 100%;
-}
-
-.form {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  width: 100%;
+  justify-content: center;
+  align-items: center;
+  background: #f7f8fc;
+  padding: 40px 20px;
 }
 
+/* Title */
+.title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #1f1f1f;
+}
+
+/* Error message */
+.error {
+  color: #d32f2f;
+  font-size: 13px;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+/* Form card */
+.form {
+  background: #ffffff;
+  width: 100%;
+  max-width: 380px;
+  padding: 35px;
+  border-radius: 6px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Inputs */
 .form input {
   width: 100%;
-  padding: 15px;
-  border: 1px solid #ced4da;
+  padding: 12px;
+  margin-bottom: 14px;
+  font-size: 14px;
   border-radius: 4px;
-  font-size: 15px;
+  border: 1px solid #ddd;
   outline: none;
 }
 
-.password_wrapper {
-  position: relative;
-  width: 100%;
+.form input:focus {
+  border-color: #f08a24;
 }
 
-.password_wrapper input {
-  padding-right: 45px !important; /* Space for eye icon */
+/* Disabled button state */
+.form button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 
-.eye_icon {
-  position: absolute;
-  right: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-  color: #676767;
-  display: flex;
-  align-items: center;
-}
-
-.forgot_link_container {
-  text-align: right;
-  width: 100%;
-  margin-top: -5px;
-}
-
-.forgot_link {
-  font-size: 13px;
-  color: #fe8402 !important; /* Forces Orange Color */
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.forgot_link:hover {
-  text-decoration: underline;
-}
-
-.login_submit {
-  width: 50% !important;
-  display: block !important;
-  margin: 20px auto 10px auto !important;
-  padding: 12px 0 !important;
-  font-weight: 600;
-  color: #f7f8f9;
-  background-color: #fe8402;
-  cursor: pointer;
-  border: none;
-}
-
-.error {
-  color: #d0393e;
-  font-size: 14px;
-  text-align: center;
-  margin-bottom: 10px;
+/* Mobile */
+@media (max-width: 480px) {
+  .form {
+    padding: 25px 20px;
+  }
 }
