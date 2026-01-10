@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useAuth } from "../../../context/AuthContext";
 import { Eye, EyeOff } from "lucide-react";
-import { loginUser } from "../authService";
+//import { loginUser } from "../authService";
 import classes from "./Login.module.css";
 import { useNavigate, Link } from "react-router-dom";
 
 const Login = () => {
-  const { setUser } = useAuth();
+   const { login } = useAuth();
+  //const { setUser } = useAuth();
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -32,7 +33,8 @@ const Login = () => {
     setLoading(true);
 
     try {
-      const data = await loginUser({ email, password });
+    //  await login({ email, password });
+        const data = await loginUser({ email, password });
       setUser(data.user);
       navigate("/");
     } catch (err) {
