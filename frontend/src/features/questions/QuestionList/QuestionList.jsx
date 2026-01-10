@@ -7,7 +7,7 @@ function QuestionList({ searchTerm }) {
   const [question, setQuestion] = useState([]);
   const [Loader, setLoader] = useState(true);
 
-  
+
   useEffect(() => {
     const fetchQuestion = async () => {
       try {
@@ -68,7 +68,6 @@ function QuestionList({ searchTerm }) {
               </div>
               <p className={classes.user_name}>{q.username}</p>
               </div>
-
               <div className={classes.question_content}>
                 <p className={classes.question_title}>{q.title}</p>
                 </div>
