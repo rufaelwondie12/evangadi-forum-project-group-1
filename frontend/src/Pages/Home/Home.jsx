@@ -39,7 +39,7 @@ const Home = () => {
       </div>
 
       <div className={classes.search_section}>
-        <Search className={classes.search_icon} size={20} />
+        <Search className={classes.search_icon} size={18} />
         <input
           type="text"
           placeholder="Search questions..."
