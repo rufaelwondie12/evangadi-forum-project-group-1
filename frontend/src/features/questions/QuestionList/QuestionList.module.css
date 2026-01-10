@@ -70,10 +70,10 @@
   margin-bottom: 10px;                 
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   
-  display: flex;                        /* aligns text and arrow horizontally */
+  display: flex;                        
   align-items: center;                 
-  justify-content: space-between;       /* pushes arrow to the right */
-  gap: 10px;                             /* space between title and arrow */
+  justify-content: space-between;       
+  gap: 10px;                             
 }
 
 /* right side */
@@ -83,7 +83,7 @@
   color: #340468;                   
   transition: transform 0.3s ease, color 0.3s ease; 
   cursor: pointer;                  
-  flex-shrink: 0;                     /* prevents arrow from shrinking */
+  flex-shrink: 0;                    
 }
 
 .arrow:hover {

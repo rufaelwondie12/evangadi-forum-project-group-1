@@ -5,6 +5,7 @@ import { ArrowUp, Search } from "lucide-react";
 import classes from "./Home.module.css";
 import QuestionList from "../../features/questions/QuestionList/QuestionList";
 
+
 function Home() {
   const { user } = useAuth();
   const navigate = useNavigate();
