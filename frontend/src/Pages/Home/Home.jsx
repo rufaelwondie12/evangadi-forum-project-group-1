@@ -17,11 +17,16 @@ const Home = () => {
       behavior: "smooth",
     });
   };
+  const handleAskQuestion = (e) => {
+    e.preventDefault();
+    navigate("/ask");
+  };
+
 
   return (
     <div className={classes.home_container}>
       <div className={classes.header_row}>
-        <button onClick={() => navigate("/ask")} className={classes.askButton}>
+        <button onClick={handleAskQuestion} className={classes.askButton}>
           Ask Question
         </button>
         <h2 className={classes.welcome}>
@@ -34,7 +39,7 @@ const Home = () => {
       </div>
 
       <div className={classes.search_section}>
-        <Search className={classes.search_icon} size={20} />
+        <Search className={classes.search_icon} size={18} />
         <input
           type="text"
           placeholder="Search questions..."
