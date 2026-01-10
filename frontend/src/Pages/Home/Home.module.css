@@ -96,7 +96,7 @@
 
 .question_list_wrapper h3 {
   font-size: 1.4rem;
-  margin-bottom: 15px;
+  margin-bottom: 16px;
   font-weight: 700;
   color: #111827;
 }
@@ -104,7 +104,7 @@
 .question_list_wrapper hr {
   border: none;
   border-top: 1px solid #e9ecef;
-  margin-bottom: 25px;
+  margin-bottom: 24px;
 }
 
 /* --- Scroll To Top Section --- */
@@ -130,7 +130,7 @@
 }
 
 .scrollTopButton:hover {
-  background-color: #fe8402;
+  background-color: #ce7b22;
   transform: translateY(-3px);
   box-shadow: 0 6px 15px rgba(254, 132, 2, 0.2);
 }
