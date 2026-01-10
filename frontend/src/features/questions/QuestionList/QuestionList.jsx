@@ -33,6 +33,7 @@ const QuestionList = ({ searchTerm }) => {
     fetchQuestions();
   }, []);
 
+
   // 2. Filter logic: This creates a new list based on the search input
   // We handle the case where searchTerm might be undefined initially
   const filteredQuestions = questions.filter((q) =>
@@ -44,11 +45,12 @@ const QuestionList = ({ searchTerm }) => {
     return <div className={classes.loading}>Loading questions...</div>;
   }
 
+
   // 4. Handle Empty State (No questions at all from DB)
   if (questions.length === 0) {
     return (
       <p className={classes.no_data}>
-        No questions found. Be the first to ask!
+        No questions found. Be the first one to ask!
       </p>
     );
   }
@@ -57,7 +59,7 @@ const QuestionList = ({ searchTerm }) => {
     <div className={classes.question_list}>
       {/* 5. Handle "No Search Results" state */}
       {filteredQuestions.length === 0 ? (
-        <p className={classes.no_data}>No questions match your search.</p>
+        <p className={classes.no_data}>No questions match your search request.</p>
       ) : (
         // 6. Map over filteredQuestions so the UI updates as you type
         filteredQuestions.map((q) => (
@@ -68,7 +70,7 @@ const QuestionList = ({ searchTerm }) => {
           >
             <div className={classes.user_info}>
               <div className={classes.avatar}>
-                <CircleUser size={40} strokeWidth={1.5} color="#787878" />
+                <CircleUser size={40} strokeWidth={1.5} color="#a8a5a5" />
               </div>
               <p className={classes.user_name}>{q.username}</p>
             </div>

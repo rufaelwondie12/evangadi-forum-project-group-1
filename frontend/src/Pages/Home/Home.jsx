@@ -17,11 +17,16 @@ const Home = () => {
       behavior: "smooth",
     });
   };
+  const handleAskQuestion = (e) => {
+    e.preventDefault();
+    navigate("/ask");
+  };
+
 
   return (
     <div className={classes.home_container}>
       <div className={classes.header_row}>
-        <button onClick={() => navigate("/ask")} className={classes.askButton}>
+        <button onClick={handleAskQuestion} className={classes.askButton}>
           Ask Question
         </button>
         <h2 className={classes.welcome}>

@@ -46,7 +46,7 @@
 }
 
 .user_name {
-  font-size: 14px;
+  font-size: 15px;
   color: var(--text-gray);
   word-break: break-all;
 }
@@ -58,7 +58,7 @@
 }
 
 .question_title {
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 500;
   color: #333;
 }

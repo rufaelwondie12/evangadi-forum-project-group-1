@@ -12,14 +12,15 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 40px;
+  margin-bottom: 1.5rem;
+  width: 100%;
 }
 
 .askButton {
   background-color: #3b82f6;
   color: white;
-  padding: 10px 25px;
-  border-radius: 5px;
+  padding: 0.5rem 1rem;
+ border-radius: 0.5rem;
   transition: all 0.3s ease;
   border: none;
   font-weight: 600;
@@ -97,7 +98,7 @@
   font-size: 1.4rem;
   margin-bottom: 15px;
   font-weight: 700;
-  color: #3b455a;
+  color: #111827;
 }
 
 .question_list_wrapper hr {
