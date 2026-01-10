@@ -1,5 +1,5 @@
 .landing_container {
-  padding: 80px 20px;
+  padding: 78px 20px;
   min-height: 80vh;
   display: flex;
   justify-content: center;
@@ -7,12 +7,12 @@
 }
 
 .inner_container {
-  max-width: 1100px;
+  max-width: 199px;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 50px;
+  gap: 49px;
 }
 
 /* --- LEFT SIDE: AUTH BOX --- */
@@ -33,7 +33,7 @@
 
 .toggle_link {
   text-align: center;
-  margin-bottom: 25px;
+  margin-bottom: 23px;
   font-size: 15px;
 }
 
@@ -50,12 +50,12 @@
 
 .bottom_link {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 19px;
 }
 
 .bottom_link span {
   color: #fe8402;
-  font-size: 14px;
+  font-size: 15px;
   cursor: pointer;
 }
 
