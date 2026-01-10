@@ -6,7 +6,7 @@ import classes from "./Login.module.css";
 import { useNavigate, Link } from "react-router-dom";
 
 const Login = () => {
-   const { login } = useAuth();
+  const { login } = useAuth();
   //const { setUser } = useAuth();
   const navigate = useNavigate();
 
@@ -33,9 +33,7 @@ const Login = () => {
     setLoading(true);
 
     try {
-    //  await login({ email, password });
-        const data = await loginUser({ email, password });
-      setUser(data.user);
+      await login({ email, password });
       navigate("/");
     } catch (err) {
       setError(err.message);
