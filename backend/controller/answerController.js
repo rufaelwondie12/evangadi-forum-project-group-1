@@ -3,18 +3,30 @@ const { StatusCodes } = require("http-status-codes");
 
 async function postAnswer(req, res) {
   const { questionid, answer } = req.body;
-  const userid = req.user.userid;
+  const userid = req.user?.userId;
 
-  if (!questionid || !answer) {
+  if (!questionid) {
     return res
       .status(StatusCodes.BAD_REQUEST)
       .json({ msg: "Please provide all fields" }); //
   }
 
+  if (!userid) {
+    return res.status(StatusCodes.UNAUTHORIZED).json({
+      message: "User not authenticated",
+    });
+  }
+
+  if (!answer) {
+    return res.status(StatusCodes.BAD_REQUEST).json({
+      message: "Answer text is required",
+    });
+  }
+
   try {
     await dbConnection.query(
       "INSERT INTO answers (userid, questionid, answer) VALUES (?, ?, ?)",
-      [userid, questionid, answer],
+      [userid, questionid, answer]
     );
 
     return res
@@ -40,7 +52,7 @@ async function getAnswers(req, res) {
        JOIN users ON answers.userid = users.userid 
        WHERE answers.questionid = ? 
        ORDER BY answers.answerid DESC`,
-      [question_id],
+      [question_id]
     );
 
     return res.status(StatusCodes.OK).json({ answers });
